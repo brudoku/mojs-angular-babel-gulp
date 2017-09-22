@@ -1,0 +1,6 @@
+node_modules/
+app/bower_components/
+.bowerrc
+dist
+app/js/bundled.js
+app/css/*.css

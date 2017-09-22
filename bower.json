@@ -1,0 +1,22 @@
+{
+  "name": "boilerplate-gulp-browserify-angular",
+  "version": "0.0.0",
+  "authors": [
+    "David Okunlola <dnamuzik@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/bower_components",
+    "source",
+    "spec",
+    ".bowerrc",
+    ".gitignore"
+  ],
+  "dependencies": {
+    "angular": "1.6.1",
+    "angular-animate": "1.6.1",
+    "snabbt.js": "0.6.4"
+  }
+}
