@@ -31,14 +31,27 @@
  -->
 
     <!-- element to move -->
-    <div class="elem" id="js-elem"></div>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <div class="elem" id="js-elem"></div>
+            </div>
+        </div>
+    </div>
+    <div class="links" id="js-links">
+        <a href="" class="link" id="js-link">news</a>
+        <a href="" class="link">about us</a>
+        <a href="" class="link">work</a>
+        <a href="" class="link">contacts</a>
+    </div>
 
     <!-- SVG path -->
-    <svg width="343px" height="167px" viewBox="0 0 343 167" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg style="display:none" width="343px" height="167px" viewBox="0 0 343 167" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- <path id="js-path" d="M8 48 L56 48 L48 0 L22 16 Z" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-opacity=".25" stroke-dasharray="5"></path> -->
         <path id="js-path" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-opacity=".25" stroke-dasharray="5" d="M5.51132201,34.7776271 L33.703781,32.8220808 L44.4592855,6.74813038 C45.4370587,4.30369752 47.7185293,3 50,3 C52.2814707,3 54.5629413,4.30369752 55.5407145,6.74813038 L66.296219,32.8220808 L94.488678,34.7776271 C99.7034681,35.1035515 101.984939,41.7850013 97.910884,45.2072073 L75.9109883,63.1330483 L82.5924381,90.3477341 C83.407249,94.4217888 80.4739296,97.6810326 77.0517236,97.6810326 C76.0739505,97.6810326 74.9332151,97.3551083 73.955442,96.7032595 L49.8370378,81.8737002 L26.044558,96.7032595 C25.0667849,97.3551083 23.9260495,97.6810326 22.9482764,97.6810326 C19.3631082,97.6810326 16.2668266,94.4217888 17.4075619,90.3477341 L23.9260495,63.2960105 L2.08911601,45.2072073 C-1.98493875,41.7850013 0.296531918,35.1035515 5.51132201,34.7776271 Z" />
     </svg>
-    <div ng-app="app" id="app" style="display:block">
+
+    <div ng-app="app" id="app" style="display:none">
 
         <div class="container">
             <div class="row">
@@ -74,6 +87,8 @@
     <script src="//cdn.jsdelivr.net/mojs-player/latest/mojs-player.min.js"></script>
     <script src="//cdn.jsdelivr.net/mojs-curve-editor/latest/mojs-curve-editor.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.7/pubsub.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
 
 
     <!-- bower scripts -->
