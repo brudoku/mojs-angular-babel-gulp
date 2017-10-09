@@ -6,13 +6,15 @@ function log (msg){
 }
 const easingStep = new mojs.easing.path('M0, 100 C0, 100 10, 100 10, 100 C10, 100 10, 90 10, 90 C10, 90 25, 90 25, 90 C25, 90 25, 75 25, 75 C25, 75 40, 75 40, 75 C40, 75 40, 60 40, 60 C40, 60 50, 60 50, 60 C50, 60 50, 50 50, 50 C50, 50 60, 50 60, 50 C60, 50 60, 40 60, 40 C60, 40 65, 40 65, 40 C65, 40 65, 35 65, 35 C65, 35 70, 35 70, 35 C70, 35 100, 0 100, 0 ');
 const easingHill = new mojs.easing.path('M0, 100 C0, 100 1.898474554477918, 26.24438258837924 22.571428571428577, 45 C43.24438258837925, 63.75561741162074 40.40319341501881, 37.723531589552444 75, 45 C88.45394944212404, 93.41932555330472 100, 0 100, 0 ');
+
 const LETTER_OPTS = {
   opacity: {0:1},
-  scale: {5: 1, curve: easingStep},
-}
+  scale: {5: 1},
+};
 
 const b = new mojs.Html({
   ...LETTER_OPTS,
+  x: {'-100':15},
   el: '#l-1',
   y: {0: 100, },  
 });
@@ -30,175 +32,218 @@ const u = new mojs.Html({
   el: '#l-3',
   x: 50,
   y: {120:100},
-scale:{1:1},
-  z: {'-100': 0},
   delay: 250
 });
 
-const pathAudio = util.getSvgPathsSingle('Layer_1');
+const logobru = new mojs.Html({
+  el: '#sv-logo',
+  // angleX: {'-90': 0},
+  duration:750,
+  opacity: {0:1},
+  // y: {'-50': 0},
+  scaleX: { 2:1 },
+  scaleY: { 0:1 }
+  
+});
 
-class LgA extends mojs.CustomShape {
-  getShape () { return '<path d="'+ pathAudio[0] + '""></path>'; }
-  getLength () { return 10; }
+class Heart extends mojs.CustomShape {
+  getShape () { return '<path d="M92.5939814,7.35914503 C82.6692916,-2.45304834 66.6322927,-2.45304834 56.7076029,7.35914503 L52.3452392,11.6965095 C51.0327802,12.9714696 48.9328458,12.9839693 47.6203869,11.6715103 L47.6203869,11.6715103 L43.2705228,7.35914503 C33.3833318,-2.45304834 17.3213337,-2.45304834 7.43414268,7.35914503 C-2.47804756,17.1963376 -2.47804756,33.12084 7.43414268,42.9205337 L29.7959439,65.11984 C29.7959439,65.1323396 29.8084435,65.1323396 29.8084435,65.1448392 L43.2580232,78.4819224 C46.9704072,82.1818068 52.9952189,82.1818068 56.7076029,78.4819224 L70.1696822,65.1448392 C70.1696822,65.1448392 70.1696822,65.1323396 70.1821818,65.1323396 L92.5939814,42.9205337 C102.468673,33.12084 102.468673,17.1963376 92.5939814,7.35914503 L92.5939814,7.35914503 Z"></path>'; }
+  getLength () { return 292.110107421875; } // optional
 }
-
-class LgB extends mojs.CustomShape {
-  getShape () { return '<path d="'+ pathAudio[1] + '""></path>'; }
-  getLength () { return 10; }
-}
-
-class LgC extends mojs.CustomShape {
-  getShape () { return '<path d="'+ pathAudio[2] + '""></path>'; }
-  getLength () { return 10; }
-}
-class LgD extends mojs.CustomShape {
-  getShape () { return '<path d="'+ pathAudio[3] + '""></path>'; }
-  getLength () { return 10; }
-}
-
-class LgE extends mojs.CustomShape {
-  getShape () { return '<path d="'+ pathAudio[4] + '""></path>'; }
-  getLength () { return 10; }
-}
-
-mojs.addShape('logA', LgA)
-mojs.addShape('logB', LgB)
-mojs.addShape('logC', LgC)
-mojs.addShape('logD', LgD)
-mojs.addShape('logE', LgE);
-
-
-const LOGO_OPTS = {
+mojs.addShape( 'heart', Heart ); 
+const heart = new mojs.Shape({
+  shape:    'heart',
+  fill:     'none',
   stroke:   'white',
-  strokeDasharray: {'100%' : '10%'},
-  parent: '#logob',
-  // strokeDashoffset: {'10%' : '-99%' },
-  fill: 'none',
-  duration:  400,
-  radius: 200,    
-  stroke: 'black',
-  y: {'50':'41'},
-  scale:0.3,
-
-  
-}
-
-const A = new mojs.Shape({
-  ...LOGO_OPTS,
-  // strokeDasharray: '0.3%',
-  shape: 'logA', 
-  fill: {'black':'black'},
-  // angle: { 0: 360, easing: easingHill},
-  duration: 1000
+  strokeDasharray: '100%',
+  strokeDashoffset: { '-100%' : '100%' },
+  y:         -20,
+  duration:  1000,
 });
 
-const B = new mojs.Shape({
-  ...LOGO_OPTS,
-  shape: 'logB',
-});
+var square = document.querySelector('#js-square');
 
-const C = new mojs.Shape({
-  ...LOGO_OPTS,
-  shape: 'logC',
-});
-
-const D = new mojs.Shape({
-...LOGO_OPTS,
-shape: 'logD',
-});
-
-const E = new mojs.Shape({
-...LOGO_OPTS,
-shape: 'logE',
-});
-
-
-
-const DURATION = 400;
-
-const dot = new mojs.Shape({
-  shape: 'circle',
-  
-  parent: '#burst',
-  radius: {10: 1},
-  opacity: {0: 1}
-})
-
-const bubbles = new mojs.Burst({
-  left: 0, top: 0,
-  parent: '#burst',
-  degree:   '360',
-  count:    9,
-  // radius:   { 20: 1 },
-  // radius:  10,
-  
-  children: {
-    shape: 'polygon',
-    fill:       'none',
-    stroke:   'white',
-    strokeDasharray: {'100%' : '10%'},    
-    scale: {2:0},
-    opacity: {0:1},
-    angle: {0: 270},
-    pathScale:  'rand(0.5, 1)',
-    radius:     'rand(12, 15)',
-    swirlSize:  'rand(10, 15)',
-    swirlFrequency: 'rand(2, 4)',
-    direction:  [ 1, -1 ],
-    duration:   `rand(${1*DURATION}, ${2*DURATION})`,
-    delay:      'rand(0, 75)',
-    easing:     'quad.out',
-    isSwirl:    true,
-    isForce3d:  true,    
+var anim = new mojs.Html({
+  el: square,
+   y: {
+    0: '50%',
+    duration: 300,
+    delay: 100,
+    easing: 'cubic.out',
+  },
+  x: {
+    0: '50%',
+    duration: 300,
+    delay: 300,
+    easing: 'cubic.out',
+  },
+  width:{
+    '80%': '50%',
+    duration: 300,
+    delay: 600,
+    easing: 'cubic.out',
   }
-});
-
-
-const tween = new mojs.Tween({
-  duration: 1000,
-  delay: 2000,
-  
-  onUpdate (p) {
-    var shiftP = mojs.easing.cubic.in( p );
-    var scaleP = mojs.easing.quad.in( p );
-    
-    mojs.h.setPrefixedStyle( logob, 'transform',
-    `translate(0px, ${ -shiftP }px)
-    scaleY(${ 1 + 25*scaleP })`
-  );    
-  }
-
 })
 
 const timeline = new mojs.Timeline();
-timeline.add([b, r, u, A, B, C, D, E, bubbles/* tween */]);
+timeline.add([b, r, u, logobru, anim,heart]);
 timeline.play();
-document.addEventListener('click', function(e){
-  var x = Math.floor(Math.sin(e.clientX)*10 )+ '%';
-  var y = Math.floor(Math.cos(e.clientY)*10 ) + '%';
-  bubbles.tune({
-    // x: e.pageX, y: e.pageY
-  //   strokeDasharray: { x:y },
-  //   // strokeDashoffset: { x:y },
-  //   // scale: {x : y},
-  //   duration: 1000
-  })
-  timeline.replay();
-})
 
-document.addEventListener('mousemove', function(e){
-  var x = Math.abs(Math.floor(Math.sin(e.clientX)*3 ) )//+ '%';
-  var y = Math.abs(Math.floor(Math.cos(e.clientY)*3 ) ) //+ '%';
-  A.tune({
-    // strokeDasharray: { x:y },
-    // strokeDashoffset: { x:y },
-    // scale: y,
-    // x: x,
-    // y: y
-    // duration: 1000
-  })//.play()  
-  // console.log(x)
-  // console.log(y)
+// document.addEventListener('click', function(e){
+//   var x = Math.floor(Math.sin(e.clientX)*10 )+ '%';
+//   var y = Math.floor(Math.cos(e.clientY)*10 ) + '%';
+//   timeline.replay();
+// });
+
+// new MojsPlayer({ add: b });
+
+const RAD = 320;
+const SF = 0.8;
+
+function rescale(){
+  let w = util.getWindowSize();  
+  return Math.abs(( w / RAD ) * SF);
+}
+
+function tuneEm(arr){
+  let w = util.getWindowSize();
+  _.each(arr, function(shape){
+    shape.tune({scale: rescale()});
+  });
+}
+
+const COLORS = {
+  white:   '#ffffff',
+  black:   '#000000',
+  green:   '#49F2CC',
+  pink:    '#777',
+  grey:    '#29363B',
+  cyan:    'cyan',
+  yellow:  '#FFE202',
+  hotpink: 'deeppink',
+};
+const blendMode = 'screen';
+
+const y = -50;
+
+const staticTriangle = new mojs.Shape({
+  shape:        'polygon',
+  duration:     1160,
+  radius:       { 60: 65 },
+  angle:       -60,
+  fill:         'none',
+  stroke:       COLORS.white,
+  strokeWidth:  { 30 : 5 },
+  easing:       'cubic.out',
+  isShowEnd:    false,
+  width:        170,
+  height:       170,
+  y
+  });
+
+// small triangles
+
+let shift1 = 87,
+  shift2 = 50,
+  SMALL_OPTS = {
+  scale: 3,
+  parent: '#sv-logo',
+  shape:        'polygon',
+  duration:     1160,
+  radius:       14,
+  angle:       -60,
+  fill:         'none',
+  stroke:       COLORS.white,
+  strokeWidth:  { 14 : 4 },
+  easing:       'expo.out',
+  isShowEnd:    false,
+  // angle: {0:730}
+  };
+
+let small1 = new mojs.Shape({
+  ...SMALL_OPTS,
+  x: { 0: -shift1 },
+  y: { [y]: -shift2 + y }
+  });
+
+let small2 = new mojs.Shape({
+  ...SMALL_OPTS,
+  x: { 0: shift1 },
+  y: { [y]: -shift2 + y }
+  });
+
+let small3 = new mojs.Shape({
+  ...SMALL_OPTS,
+  y: { [y]: 1.15*shift1 + y },
+  scale: rescale()
+  });
+
+// supporting large triangles
+
+let SUPP_OPTS = {
+  scale: 3,
+  parent: '#sv-logo',
+  shape:        'polygon',
+  duration:     1000,
+  radius:       { 40: 20 },
+  angle:       -60,
+  fill:         'white',
+  fillOpacity:  { 0: 1 },
+  stroke:       COLORS.white,
+  strokeWidth:  { 7 : 0 },
+  easing:       'cubic.out',
+  delay:        60,
+  y,
+  // x:            1,
+  isShowEnd:    false
+}
+let support1 = new mojs.Shape(SUPP_OPTS);
+
+let support2 = new mojs.Transit({
+  ...SUPP_OPTS,
+  strokeWidth: { 4 : 0 },
+  fill:         'none',
+  // duration:     810,
+  radius:       { 85 : 95 }
+  });
+
+
+
+const line = new mojs.Shape({
+  shape: 'line',
+  stroke: 'hotpink',
+  radius: 200,
+  // parent: '#line',
+  strokeDasharray: '100%', // make dash on the line 100% length visible followed by 100% length of transparent
+  // strokeDashoffset: { '100%': '200%' }, // animate from 100% length to 200% length => shift from invisible to visible
+  strokeDashoffset: { '-100%': '100%' }, // alternatively
+  y: { 100: util.getScreenY() },
+  x: { 100: util.getScreenX() },
   
-})
-  
+  duration: 1000
+});
+
+var shapeArray = [staticTriangle, small1, small2, small3, support1, support2, heart, line];
+
+// const timeline = new mojs.Timeline();
+timeline
+.add(
+shapeArray
+);
+
+tuneEm(shapeArray)
+
+
+// new MojsPlayer({ add: timeline, isPlaying: true, isRepeat: true });
+
+window.addEventListener('resize', function(e){
+  // tune(shapeArray)
+  // staticTriangle.tune({scale: rescale()})
+  // heart.tune({scale: rescale()})
+  log( rescale() )
+  tuneEm(shapeArray)
+});
+
+document.addEventListener('drag', function(){
+  timeline.replay();
+});
