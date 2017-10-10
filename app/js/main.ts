@@ -50,7 +50,9 @@ class Heart extends mojs.CustomShape {
   getShape () { return '<path d="M92.5939814,7.35914503 C82.6692916,-2.45304834 66.6322927,-2.45304834 56.7076029,7.35914503 L52.3452392,11.6965095 C51.0327802,12.9714696 48.9328458,12.9839693 47.6203869,11.6715103 L47.6203869,11.6715103 L43.2705228,7.35914503 C33.3833318,-2.45304834 17.3213337,-2.45304834 7.43414268,7.35914503 C-2.47804756,17.1963376 -2.47804756,33.12084 7.43414268,42.9205337 L29.7959439,65.11984 C29.7959439,65.1323396 29.8084435,65.1323396 29.8084435,65.1448392 L43.2580232,78.4819224 C46.9704072,82.1818068 52.9952189,82.1818068 56.7076029,78.4819224 L70.1696822,65.1448392 C70.1696822,65.1448392 70.1696822,65.1323396 70.1821818,65.1323396 L92.5939814,42.9205337 C102.468673,33.12084 102.468673,17.1963376 92.5939814,7.35914503 L92.5939814,7.35914503 Z"></path>'; }
   getLength () { return 292.110107421875; } // optional
 }
+
 mojs.addShape( 'heart', Heart ); 
+
 const heart = new mojs.Shape({
   shape:    'heart',
   fill:     'none',
@@ -83,19 +85,100 @@ var anim = new mojs.Html({
     delay: 600,
     easing: 'cubic.out',
   }
-})
+});
+
+let LINE_OPTS = {
+  shape: 'line',  
+  stroke: 'white',
+  duration: 1000,
+  // strokeDashoffset: { '100%': '200%' }, // animate from 100% length to 200% length => shift from invisible to visible
+  strokeDashoffset: { '-100%': '100%' }, // alternatively  
+  strokeDasharray: {'100%':'100%'}, // make dash on the line 100% length visible followed by 100% length of transparent  
+};
+
+/*@todo 
+  calc dimensions and assign line xy values
+*/
+
+let tuneLines = () => {
+  let topLeft = $('.mojs-line-tl-hook').position();
+  let boxWidth = $('#main').width();
+  let boxHeight = $('#main').height();
+  lineTopLeft.tune({
+    x: topLeft.top + boxWidth/2,
+    y: topLeft.top,
+    radius: boxHeight,
+  });
+
+  lineTopRight.tune({
+    x: topLeft.left + boxWidth,
+    y: topLeft.top  + boxHeight/2,    
+    radius: boxHeight,    
+  })
+    
+  lineBottomRight.tune({
+    x: boxWidth/2,
+    y: boxHeight,  
+    radius: boxHeight,    
+  })
+
+  lineBottomLeft.tune({
+    x: topLeft.left,
+    y: boxHeight/2,
+    radius: boxHeight,    
+  })  
+}
+
+let boxWidth = $('#main').width();
+let boxHeight = $('#main').height();
+
+let lineTopLeft = new mojs.Shape({
+  ...LINE_OPTS,
+  parent: '.mojs-line-tl-hook',    
+  angle: 180,
+  radius: boxWidth / 2,
+  scale: 1
+});
+
+let lineTopRight = new mojs.Shape({
+  ...LINE_OPTS, 
+  parent: '.mojs-line-tl-hook',    
+  angle: 270,
+  radius: boxHeight / 2,
+  delay: 250,
+});
+let lineBottomRight = new mojs.Shape({
+  ...LINE_OPTS,
+  parent: '.mojs-line-tl-hook',    
+  angle: 0,
+  radius: boxWidth / 2,
+  delay: 300
+});
+
+let lineBottomLeft = new mojs.Shape({
+  ...LINE_OPTS, 
+  parent: '.mojs-line-tl-hook',    
+  angle: '-270',
+  radius: boxHeight / 2,
+  delay: 750,
+});
+let linesArray= [  
+  lineTopLeft,
+  lineTopRight,
+  lineBottomRight,
+  lineBottomLeft,
+]
 
 const timeline = new mojs.Timeline();
-timeline.add([b, r, u, logobru, anim,heart]);
+timeline.add([b, r, u, 
+  logobru,
+   anim,
+   heart
+  ]);
+timeline.add(linesArray);
+tuneLines();
+
 timeline.play();
-
-// document.addEventListener('click', function(e){
-//   var x = Math.floor(Math.sin(e.clientX)*10 )+ '%';
-//   var y = Math.floor(Math.cos(e.clientY)*10 ) + '%';
-//   timeline.replay();
-// });
-
-// new MojsPlayer({ add: b });
 
 const RAD = 320;
 const SF = 0.8;
@@ -107,6 +190,13 @@ function rescale(){
 
 function tuneEm(arr){
   let w = util.getWindowSize();
+  let rad = Math.abs(( w / RAD ) * SF) * 50;
+  line.tune({radius: rad});
+  /* linesArray
+  _.each(arr, function(shape){
+    shape.tune({scale: rescale()});
+  }); */
+
   _.each(arr, function(shape){
     shape.tune({scale: rescale()});
   });
@@ -129,6 +219,7 @@ const y = -50;
 const staticTriangle = new mojs.Shape({
   shape:        'polygon',
   duration:     1160,
+  
   radius:       { 60: 65 },
   angle:       -60,
   fill:         'none',
@@ -141,7 +232,6 @@ const staticTriangle = new mojs.Shape({
   y
   });
 
-// small triangles
 
 let shift1 = 87,
   shift2 = 50,
@@ -178,8 +268,6 @@ let small3 = new mojs.Shape({
   scale: rescale()
   });
 
-// supporting large triangles
-
 let SUPP_OPTS = {
   scale: 3,
   parent: '#sv-logo',
@@ -212,38 +300,42 @@ let support2 = new mojs.Transit({
 const line = new mojs.Shape({
   shape: 'line',
   stroke: 'hotpink',
-  radius: 200,
-  // parent: '#line',
+  // radius: 200,
+  parent: '#line',
+  repeat: 1,
   strokeDasharray: '100%', // make dash on the line 100% length visible followed by 100% length of transparent
-  // strokeDashoffset: { '100%': '200%' }, // animate from 100% length to 200% length => shift from invisible to visible
-  strokeDashoffset: { '-100%': '100%' }, // alternatively
-  y: { 100: util.getScreenY() },
-  x: { 100: util.getScreenX() },
-  
-  duration: 1000
+  strokeDashoffset: { '100%': '200%' }, // animate from 100% length to 200% length => shift from invisible to visible
+  // strokeDashoffset: { '-100%': '100%' }, // alternatively
+  y: { 0: util.getScreenY() },
+  x: { 0: util.getScreenX() },  
+  duration: 400,
+  // angle: {0:360},
+}).then({
+  y: { 0: util.getScreenX() },
+  x: { 0: util.getScreenY() },  
+  duration: 400,
+  onComplete(){
+    timeline.replayBackward()
+  } 
 });
 
-var shapeArray = [staticTriangle, small1, small2, small3, support1, support2, heart, line];
+var shapeArray = [staticTriangle, small1, small2, small3, support1, support2, line];
 
-// const timeline = new mojs.Timeline();
+
+
 timeline
 .add(
-shapeArray
+shapeArray, 
+
 );
 
 tuneEm(shapeArray)
 
-
-// new MojsPlayer({ add: timeline, isPlaying: true, isRepeat: true });
-
 window.addEventListener('resize', function(e){
-  // tune(shapeArray)
-  // staticTriangle.tune({scale: rescale()})
-  // heart.tune({scale: rescale()})
-  log( rescale() )
-  tuneEm(shapeArray)
+  tuneEm(shapeArray);
+  tuneLines();
 });
 
-document.addEventListener('drag', function(){
+document.addEventListener('click', function(){
   timeline.replay();
 });

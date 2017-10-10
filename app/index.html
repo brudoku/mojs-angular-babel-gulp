@@ -17,39 +17,32 @@
 
 <body>
     <!-- element to move -->
-    <div class="container logo-container">
+    <div class="container" id="main">
+        <div class="mojs-line-tl-hook">xx</div>
+
         <div class="row">
-            <div class="one-third column">&nbsp;
-            </div>
+            <div class="one-third column">&nbsp;</div>
             <div class="one-third column">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
-                   
-                     <text x="0" y="35" font-family="Lobster" font-size="35"
-                     style="
-                     fill: #000;">
-                       Bru.audio
-                     </text>
-                   </svg>
+                    <text x="0" y="35" font-family="Lobster" class="svg-text" font-size="35" style="fill: #000;">
+                        Bru.audio
+                    </text>
+                </svg>
             </div>
-            <div class="one-third column">&nbsp;
+            <div class="one-third column">&nbsp;</div>
+        </div>
+
+        <div class="row">
+            <div class="twelve columns">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1000 80">
+                    <text x="0" y="35" font-family="Lobster" font-size="35" style="font-size: 44px;fill: #fff;">
+                        highlight and drag text to trigger animation
+                    </text>
+                </svg>
             </div>
         </div>
 
         <div class="row">
-            <div class="one-third column">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 500 40">
-           
-             <text x="0" y="35" font-family="Lobster" font-size="35"
-             style="
-             font-size: 44px;
-             
-             fill: #fff;">
-               highlight and drag text to trigger animation
-             </text>
-           </svg>
-            </div>
-            <!-- <div class="one-third column"> -->
-
             <div class="twelve columns">
                 <div id="sv-logo">
                     <!-- <svg version="1.1" viewBox="0 0 300 100" min-x="50" min-y="10" preserveAspectRatio="xMinYMin" xmlns="http://www.w3.org/2000/svg"> -->
@@ -126,6 +119,7 @@
             </div>
             <!-- <div class="one-third column">&nbsp;</div> -->
         </div>
+
         <div class="row">
             <!-- <div class="one-third column">&nbsp;</div> -->
             <!-- <div class="one-third column"> -->
@@ -137,10 +131,11 @@
             </div>
             <!-- <div class="one-third column">&nbsp;</div> -->
         </div>
+
         <div class="row">
             <div class="twelve columns">
                 <div id="js-square">
-                    <svg version="1.1" viewBox="0 0 86 52" xmlns="http://www.w3.org/2000/svg">
+                    <svg version="1.1" style="display:none" viewBox="0 0 86 52" xmlns="http://www.w3.org/2000/svg">
                         <g>
                             <path d="M11.721,34.003c-0.56,0-1.32-0.12-1.32-0.96c0-0.82,0.68-0.96,1.32-0.96h2.641c1,0,1.72,0.1,2.48,0.86
                                 c0.74,0.74,0.84,1.32,0.86,2.28l0.2,6.521c0.02,0.56-0.26,1.12-0.9,1.12c-0.5,0-1-0.42-0.98-0.96l-1.32,0.68
@@ -182,8 +177,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 
     <!-- cdn scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
