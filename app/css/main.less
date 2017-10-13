@@ -10,96 +10,32 @@ body, html {
   width: 100%;  
   height: 100%;
   overflow: hidden;
-  // background-image: linear-gradient(0deg, #78113B, #BD51A0);    
-  background-image: linear-gradient(-90deg, #13121C, #0E1220);
+  background-image: linear-gradient(0deg, #78113B, #BD51A0);    
+  // background-image: linear-gradient(-90deg, #13121C, #0E1220);
   color: #f0f0f0;
-}
-
-.links {
-  width: 100px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -50px;
-  margin-top: -60px;
-  // outline: 1px solid white;
-}
-
-.hide{
-  display: none;
-}
-
-.links .link {
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  display: block;
-  font-family: sans-serif;
-  margin-top: 10px;
-  position: relative;
-}
-
-.elem {
-  width:         100%;
-  height:        30px;
-  border-radius: 50%;
-  // background:    white;
-  margin-top:   -10px;
-  margin-left:  -10px;
-  position:      absolute;
 }
 
 .nav{
   width:100%;
   margin: 0 auto;
-  a{
-    color: white;
-    font-size:1em;
-    text-decoration: none;
-    text-align: center;
-    display: inline-block;
-    font-family: sans-serif;
-    margin-top: 10px;
-    position: relative;
-    text-transform: lowercase;
-    font-family: 'Rajdhani', sans-serif;
-  }
-}
-
-/*
-  font-family: 'Geo', sans-serif;
-  //futuristic
-  font-family: 'Nosifer', cursive;
-  //dripping
-  font-family: 'Lobster', cursive;
-  //curled
-  font-family: 'Rajdhani', sans-serif;
-  //discrete
-*/
-
-.logo{
-  margin: 10px;
-  img{
+  color: #fff;
+  ul{
     width: 100px;
+    margin: 0 auto;
+    // background: red;
+    li{
+      color: white;
+      font-size:1em;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      font-family: sans-serif;
+      margin-top: 10px;
+      position: relative;
+      text-transform: lowercase;
+      font-family: 'Rajdhani', sans-serif;
+    }
   }
-}
-
-#jm{
-  position: absolute;
-  top: 10;
-  left: 10;
-}
-
-#panel-top{
-  background: dodgerblue;
-  height: 500px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.4);
-}
-
-#panel-bottom{
-  background: dodgerblue;
-  height: 700px;
-  
 }
 
 .logo {
@@ -114,20 +50,38 @@ body, html {
   transform-origin: 50% 0;;
 }
 
-#logoa{
-  // display: inline-block;
-  position:     absolute;
-  
+#main{
+  margin-top: 15px;
+  padding: 10px;
+  height: 100%;
 }
-  
 
-#logoa{
-  span{
-    color: white;
-    font-size: 1.9em;
-    font-family: 'Geo', sans-serif;
-  }
-} 
+#sv-logo{
+  width: 50%;  
+  margin: 0 auto;
+}
+
+#l-1,#l-2,#l-3{
+  // background: #0044FF;
+  // padding: 0px 2.5px;
+}
+.mojs-line-tl-hook{
+  position: absolute ;
+  top: 0; left:0;
+}
+
+.svg-text{
+  stroke: 'white';
+}
+
+.mojs-line-tl-hook{
+  top: 0; left:0;
+}
+
+div.inner {
+  padding: 4px 4px 8px 12px;
+  overflow:auto;
+}
 
 .path, .x {
   stroke: 'red';
@@ -144,58 +98,32 @@ body, html {
   }
 }
 
-#main{
-  // border: solid 2px #000;
-  margin-top: 15px;
-  padding: 10px;
-  height: 800px;
+.hide{
+  display: none;
 }
 
-#sv-logo{
-  width: 50%;  
-  margin: 0 auto;
-}
+/*
+  font-family: 'Geo', sans-serif;
+  //futuristic
+  font-family: 'Nosifer', cursive;
+  //dripping
+  font-family: 'Lobster', cursive;
+  //curled
+  font-family: 'Rajdhani', sans-serif;
+  //discrete
 
-#l-1,#l-2,#l-3{
-position: absolute  
-}
+  320px
+  480
+  768
+  1024
+*/
 
-.logo-container{
-  border: solid;
-  margin-top: 15px;
-}
-
-.svg-text{
-  stroke: 'white';
-}
-.mojs-line-tl-hook,
-.mojs-line-tr-hook,
-.mojs-line-br-hook,
-.mojs-line-bl-hook{
-  position: absolute;
-}
-
-.mojs-line-tl-hook{
-  top: 0; left:0;
-}
-
-.mojs-line-tr-hook{
-  top: 0; right:0;
-}
-
-.mojs-line-br-hook{
-  bottom: 0; right:0;
-}
-
-.mojs-line-bl-hook{
-  bottom: 0; left:0;
-}
-
-div.inner {
-  padding: 4px 4px 8px 12px;
-  overflow:auto;
-}
-/* 
-#logo{
-  width: 50%;
-} */
+  /* Desktops and laptops ----------- */
+  @media (min-width : 480px) {
+  /* Styles */
+  }
+  
+  /* Large screens ----------- */
+  @media only screen  and (min-width : 1824px) {
+  /* Styles */
+  }

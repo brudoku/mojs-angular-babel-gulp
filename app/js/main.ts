@@ -1,12 +1,11 @@
 'use strict';
 /*...*/
+
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();
   function log (msg){
     console.log(msg);
     }
-  const easingStep = new mojs.easing.path('M0, 100 C0, 100 10, 100 10, 100 C10, 100 10, 90 10, 90 C10, 90 25, 90 25, 90 C25, 90 25, 75 25, 75 C25, 75 40, 75 40, 75 C40, 75 40, 60 40, 60 C40, 60 50, 60 50, 60 C50, 60 50, 50 50, 50 C50, 50 60, 50 60, 50 C60, 50 60, 40 60, 40 C60, 40 65, 40 65, 40 C65, 40 65, 35 65, 35 C65, 35 70, 35 70, 35 C70, 35 100, 0 100, 0 ');
-  const easingHill = new mojs.easing.path('M0, 100 C0, 100 1.898474554477918, 26.24438258837924 22.571428571428577, 45 C43.24438258837925, 63.75561741162074 40.40319341501881, 37.723531589552444 75, 45 C88.45394944212404, 93.41932555330472 100, 0 100, 0 ');
   const shiftCurve = mojs.easing.path( 'M0,100 C50,100 50,100 50,50 C50,0 50,0 100,0' );
   const scaleCurve = mojs.easing.path( 'M0,100 C21.3776817,95.8051376 50,77.3262711 50,0 C50,80.1708527 76.6222458,93.9449005 100,100' );
   const timeline = new mojs.Timeline();
@@ -28,40 +27,39 @@
   let boxWidth = $('#main').width();
   let boxHeight = $('#main').height();
   
-  const aCurve = new MojsCurveEditor({name:'bCurve'});  
+  // const aCurve = new MojsCurveEditor({name:'bCurve'});  
   
 
-/*TEXT*/
-  const LETTER_OPTS = {
+/*LINKS*/
+  let navPos = util.getScreenX()/2;
+
+  const LINK_OPTS = {
     opacity: {0:1},
-    scale: {5: 1},
-    top: 0, left: 0,
-    parent: '#sv-logo'  
+    scale: {0.3: 1},
+    top: 0, left: navPos,
+    // parent: '#nav',
+    delay: 1000,
+    y: util.getScreenY()/2,
     };
 
-  const letter1 = new mojs.Html({
-    ...LETTER_OPTS,
-    x: {'-100':15},
+  const link1 = new mojs.Html({
+    ...LINK_OPTS,
+    // x: {'-30':15},
     el: '#l-1',
-    y: 100,
     });
 
-  const letter2 = new mojs.Html({
-    ...LETTER_OPTS,  
+  const link2 = new mojs.Html({
+    ...LINK_OPTS,  
     el: '#l-2',
-    x: {0:30},
-    y: 100,
-    delay: 150
+    // x: 60,
+    // y: {'110':100},
     });
 
-  const letter3 = new mojs.Html({
-    ...LETTER_OPTS,  
+  const link3 = new mojs.Html({
+    ...LINK_OPTS,  
     el: '#l-3',
-    x: 50,
-    y: {120:100},
-    delay: 250
+    // x: {70:90},
     });
-
 
 /*LINES*/
   let LINE_OPTS = {
@@ -77,17 +75,17 @@
     // strokeDashoffset: { '-100%': '100%', curve: shiftCurve }, 
     // strokeDasharray: {'0.1%':'100%', curve: shiftCurve}, 
     };
-let LINE_OPTS_THEN= {
-    delay: 500,
-    strokeWidth: 0.1,    
-    strokeDashoffset: { '100%': '-100%', curve: shiftCurve }, 
-    strokeDasharray: {'100%':'2%', curve: shiftCurve},   
-}
+  let LINE_OPTS_THEN = {
+      delay: 500,
+      strokeWidth: 0.1,
+      strokeDashoffset: { '100%': '-100%', curve: shiftCurve }, 
+      strokeDasharray: {'100%':'2%', curve: shiftCurve},   
+  }
   let lineTopLeft = new mojs.Shape({
     ...LINE_OPTS,
     angle: 180,
     radius: boxWidth / 2,
-    scale: 1
+    // scale: 1
     }).then(LINE_OPTS_THEN);
 
   let lineTopRight = new mojs.Shape({
@@ -111,35 +109,6 @@ let LINE_OPTS_THEN= {
     delay: 250,
     }).then(LINE_OPTS_THEN);
 
-  let tuneLines = () => {
-    let topLeft = $('.mojs-line-tl-hook').position();
-    let boxWidth = $('#main').width();
-    let boxHeight = $('#main').height();
-    lineTopLeft.tune({
-      x: topLeft.top + boxWidth/2,
-      y: topLeft.top,
-      radius: boxHeight,
-    });
-
-    lineTopRight.tune({
-      x: topLeft.left + boxWidth,
-      y: topLeft.top  + boxHeight/2,    
-      radius: boxHeight,    
-    })
-      
-    lineBottomRight.tune({
-      x: boxWidth/2,
-      y: boxHeight,  
-      radius: boxHeight,    
-    })
-
-    lineBottomLeft.tune({
-      x: topLeft.left + 15,
-      y: boxHeight/2,
-      radius: boxHeight,    
-    })  
-    }
-
 
 /*SQUARE*/
   let square2 = new mojs.Shape({
@@ -149,7 +118,7 @@ let LINE_OPTS_THEN= {
     stroke: COLORS.white,
     duration: 1000,
     radius: {0: RAD, curve: 'cubic.in' } ,
-    opacity: {1:0, curve: aCurve.getEasing()},
+    opacity: {1:0, curve: 'cubic.in'},
     strokeWidth: 1,
     
     // strokeWidth: {1:4, curve: aCurve.getEasing()}
@@ -180,11 +149,49 @@ let LINE_OPTS_THEN= {
         
       });
       }
+  let tuneLines = () => {
+    let topLeft = $('.mojs-line-tl-hook').position();
+    let boxWidth = $('#main').width();
+    let boxHeight = $('#main').height();
+    lineTopLeft.tune({
+      x: topLeft.top + boxWidth/2,
+      y: topLeft.top - 10,
+      radius: boxHeight,
+    });
+
+    lineTopRight.tune({
+      x: topLeft.left + boxWidth,
+      y: topLeft.top  + boxHeight/2,    
+      radius: boxHeight,    
+    })
+      
+    lineBottomRight.tune({
+      x: boxWidth/2,
+      y: boxHeight,  
+      radius: boxHeight,    
+    })
+
+    lineBottomLeft.tune({
+      x: topLeft.left + 15,
+      y: boxHeight/2,
+      radius: boxHeight,    
+    })  
+    } 
+  
+  let tuneLinks = () => {
+    let navPos = util.getScreenX()/2;
+    log(link1);
+    // link1.tune({
+    //   left: navPos,
+    //   scale: 3
+    // })
+  }
+      
 /*TLINE*/
   timeline.add(
-    letter1, 
-    letter2, 
-    letter3,
+    link1, 
+    link2, 
+    link3,
   );
   
   let linesArray = [  
@@ -208,13 +215,16 @@ let LINE_OPTS_THEN= {
   tuneShapes(shapeArray)
 
   timeline.play();
-
+  
 /*EDIT*/
   const mojsPlayer = new MojsPlayer({ add: square2 });
-
+  
   window.addEventListener('resize', function(e){
-      tuneShapes(shapeArray);
-      tuneLines();
+    tuneShapes(shapeArray);
+    tuneLines();
+    tuneLinks();
+    // log(util.getScreenX())
+    // log(util.getWindowSize())
     });
 
   document.addEventListener('click', function(){
