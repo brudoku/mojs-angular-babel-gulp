@@ -1,6 +1,17 @@
 'use strict';
 /*...*/
-
+  const NumberSquarer = require('./libs/NumberSquarer.js');
+  const ns = new NumberSquarer();
+  const app = angular.module('app', ['ngAnimate']);
+  const mainCtrl = require('./controllers/mainCtrl.js');
+  const otherCtrl = require('./controllers/otherCtrl.js');
+  const listAnimation = require('./animations/list_item.js');
+  mainCtrl.$inject = ['$scope', '$timeout'];
+  otherCtrl.$inject = ['$scope', '$timeout'];
+  app.controller('mainCtrl', mainCtrl);
+  app.controller('otherCtrl', otherCtrl);
+  app.animation('.anim', listAnimation);
+  
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();
   function log (msg){

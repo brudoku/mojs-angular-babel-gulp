@@ -132,6 +132,34 @@
         </div>
 
     </div>
+    <div ng-app="app" id="app" style="display:block">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="six columns" ng-controller="mainCtrl">
+                    <h1>Main ctrl</h1>
+                    <div ng-click="addValue()">
+                        <h2><a href="#">Click</a></h2>
+                    </div>
+                    <ul>
+                        <li ng-repeat="value in values" id="li1-{{$index}}" class="anim"><span>{{value}}</span></li>
+                    </ul>
+                </div>
+
+                <div class="six columns" ng-controller="otherCtrl">
+                    <h1>Other ctrl</h1>
+                    <div ng-click="addValue()">
+                        <h2><a href="#">Click</a></h2>
+                    </div>
+                    <ul>
+                        <li ng-repeat="value in values" id="li2-{{$index}}" class="anim"><span>{{value}}</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- cdn scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
@@ -144,9 +172,9 @@
 
 
     <!-- bower scripts -->
-    <!-- 
-        <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script> -->
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/snabbt.js/snabbt.js"></script>
 
     <script src="./js/bundled.js"></script>
