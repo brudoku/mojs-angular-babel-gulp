@@ -22,7 +22,8 @@
   const timeline = new mojs.Timeline();
 
 /*VARS*/
-  const y = 250;
+  const y = util.getScreenX()/2 - 150;
+  
   const RAD = 320;
   const SF = 0.2;
   const COLORS = {
@@ -36,10 +37,8 @@
     hotpink: 'deeppink',
     };
   let boxWidth = $('#main').width();
-  let boxHeight = $('#main').height();
-  
+  let boxHeight = $('#main').height();  
   // const aCurve = new MojsCurveEditor({name:'bCurve'});  
-  
 
 /*LINKS*/
   let navPos = util.getScreenX()/2;
@@ -48,9 +47,9 @@
     opacity: {0:1},
     scale: {0.3: 1},
     top: 0, left: navPos,
-    // parent: '#nav',
+    parent: '#nav',
     delay: 1000,
-    y: util.getScreenY()/2,
+    // y,
     };
 
   const link1 = new mojs.Html({
@@ -71,7 +70,7 @@
     el: '#l-3',
     // x: {70:90},
     });
-
+ 
 /*LINES*/
   let LINE_OPTS = {
     shape: 'line',  
@@ -131,19 +130,24 @@
     radius: {0: RAD, curve: 'cubic.in' } ,
     opacity: {1:0, curve: 'cubic.in'},
     strokeWidth: 1,
-    
+    y: y - 370
+  })
+  /* .then({
     // strokeWidth: {1:4, curve: aCurve.getEasing()}
-    })/* .then({
+    // fill: 'red',
       delay: 250,
       angle: {0:45}
     }) */
 
   let cross = new mojs.Shape({
     shape: 'cross',
-    fill: 'none',
+    y: util.getScreenY()/2 - y,    
     stroke: COLORS.white,    
-    radius: {0: RAD, curve: 'cubic.in' } ,
-    opacity: {1:0}
+    radius: {0: RAD, curve: 'cubic.in' },
+    opacity: {1:0},
+    y: y - 370
+    
+    // fill: 'red',
     });
 
 /*FUNC*/
@@ -189,14 +193,7 @@
     })  
     } 
   
-  let tuneLinks = () => {
-    let navPos = util.getScreenX()/2;
-    log(link1);
-    // link1.tune({
-    //   left: navPos,
-    //   scale: 3
-    // })
-  }
+
       
 /*TLINE*/
   timeline.add(
@@ -233,12 +230,13 @@
   window.addEventListener('resize', function(e){
     tuneShapes(shapeArray);
     tuneLines();
-    tuneLinks();
     // log(util.getScreenX())
     // log(util.getWindowSize())
+    timeline.resume(0);
+    
     });
-
-  document.addEventListener('click', function(){
+$(window).trigger('resize')
+  document.addEventListener('dblclick', function(){
       timeline.replay();
     });
 
