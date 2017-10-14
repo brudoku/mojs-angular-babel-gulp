@@ -47,7 +47,7 @@
     opacity: {0:1},
     scale: {0.3: 1},
     top: 0, left: navPos,
-    parent: '#nav',
+    // parent: '#nav',
     delay: 1000,
     // y,
     };
@@ -130,7 +130,7 @@
     radius: {0: RAD, curve: 'cubic.in' } ,
     opacity: {1:0, curve: 'cubic.in'},
     strokeWidth: 1,
-    y: y - 370
+    y: y - 90
   })
   /* .then({
     // strokeWidth: {1:4, curve: aCurve.getEasing()}
@@ -145,7 +145,7 @@
     stroke: COLORS.white,    
     radius: {0: RAD, curve: 'cubic.in' },
     opacity: {1:0},
-    y: y - 370
+    y: y - 90
     
     // fill: 'red',
     });
