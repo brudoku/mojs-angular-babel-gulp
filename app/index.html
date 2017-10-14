@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body>
+<body ng-app="app">
     <!-- element to move -->
-    <div class="container" ng-app="app" id="main">
+    <div class="container" id="main" ng-controller="mainCtrl">
         <div class="mojs-line-tl-hook"></div>
 
         <div class="row">
@@ -37,20 +37,24 @@
             <div class="twelve columns">
                 <!-- <div class="mojs-nav-hook"></div> -->
 
-                <div id="#nav" class="nav" ng-controller="mainCtrl">
+                <div id="#nav" class="nav">
                     <ul class="flex-container center">
-                        <li class="flex-item" id="l-1" ng-click="click('listen')">Listen</li>
-                        <li class="flex-item" id="l-2">Bio</li>
-                        <li class="flex-item" id="l-3">Media</li>
+                        <li class="flex-item" id="l-1" ng-click="navClick('listen')">Listen</li>
+                        <li class="flex-item" id="l-2" ng-click="navClick('bio')">Bio</li>
+                        <li class="flex-item" id="l-3" ng-click="navClick('media')">Media</li>
                     </ul>
                 </div>
 
-                <div class="inner hide">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1000 80">
-                        <text x="0" y="35" font-family="Lobster" font-size="35" style="font-size: 44px;fill: #fff;">
-                            highlight and drag text to trigger animation
-                        </text>
-                    </svg>
+            </div>
+            <div class="twelve columns">
+                <div class="inner page" ng-show="isPageSelected('listen')">
+                    Listen - load player
+                </div>
+                <div class="inner page" ng-show="isPageSelected('bio')">
+                    Bio
+                </div>
+                <div class="inner page" ng-show="isPageSelected('media')">
+                    Media
                 </div>
             </div>
         </div>
