@@ -18,8 +18,7 @@
 <body ng-app="app">
     <!-- element to move -->
     <div class="container" id="main" ng-controller="mainCtrl">
-        <div class="mojs-line-tl-hook"></div>
-
+        <div line-anim class="mojs-line-tl-hook"></div>
         <div class="row">
             <!-- <div class="one-third column">&nbsp;</div> -->
             <div class="flex-container center">
@@ -44,7 +43,11 @@
                         <li class="flex-item" id="l-3" ng-click="navClick('media')">Media</li>
                     </ul>
                 </div>
-
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <!-- <button ng-click="doit()" class="bt">bt</button> -->
+                </div>
             </div>
             <div class="twelve columns">
                 <div class="inner page" ng-show="isPageSelected('listen')">

@@ -1,17 +1,16 @@
 'use strict';
 /*...*/
-  const NumberSquarer = require('./libs/NumberSquarer.js');
-  const ns = new NumberSquarer();
   const app = angular.module('app', ['ngAnimate']);
   const mainCtrl = require('./controllers/mainCtrl.js');
   const otherCtrl = require('./controllers/otherCtrl.js');
-  const listAnimation = require('./animations/list_item.js');
+  const lineAnim = require('./directives/lineAnim.ts');
   mainCtrl.$inject = ['$scope', '$timeout'];
   otherCtrl.$inject = ['$scope', '$timeout'];
   app.controller('mainCtrl', mainCtrl);
   app.controller('otherCtrl', otherCtrl);
-  app.animation('.anim', listAnimation);
-  
+  app.directive('lineAnim', lineAnim);
+  // app.run(['$rootScope', '$timeout', function($rootScope, $timeout) {
+  //   $timeout(function(){console.log('run');}, 2000);  }]);
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();
   function log (msg){
@@ -23,19 +22,8 @@
 
 /*VARS*/
   const y = util.getScreenX()/2 - 150;
-  
   const RAD = 320;
   const SF = 0.2;
-  const COLORS = {
-    white:   '#ffffff',
-    black:   '#000000',
-    green:   '#49F2CC',
-    pink:    '#777',
-    grey:    '#29363B',
-    cyan:    'cyan',
-    yellow:  '#FFE202',
-    hotpink: 'deeppink',
-    };
   let boxWidth = $('#main').width();
   let boxHeight = $('#main').height();  
   // const aCurve = new MojsCurveEditor({name:'bCurve'});  
@@ -85,7 +73,7 @@
     // strokeDashoffset: { '-100%': '100%', curve: shiftCurve }, 
     // strokeDasharray: {'0.1%':'100%', curve: shiftCurve}, 
     };
-  let LINE_OPTS_THEN = {
+/*   let LINE_OPTS_THEN = {
       delay: 500,
       strokeWidth: 0.1,
       strokeDashoffset: { '100%': '-100%', curve: shiftCurve }, 
@@ -118,14 +106,14 @@
     radius: boxHeight / 2,
     delay: 250,
     }).then(LINE_OPTS_THEN);
-
+ */
 
 /*SQUARE*/
   let square2 = new mojs.Shape({
     shape: 'polygon',
     points: 4,
     fill: 'none',
-    stroke: COLORS.white,
+    stroke: '#fff',
     duration: 1000,
     radius: {0: RAD, curve: 'cubic.in' } ,
     opacity: {1:0, curve: 'cubic.in'},
@@ -142,7 +130,7 @@
   let cross = new mojs.Shape({
     shape: 'cross',
     y: util.getScreenY()/2 - y,    
-    stroke: COLORS.white,    
+    stroke: '#fff',    
     radius: {0: RAD, curve: 'cubic.in' },
     opacity: {1:0},
     y: y - 90
@@ -164,14 +152,14 @@
         
       });
       }
-  let tuneLines = () => {
+  /* let tuneLines = () => {
     let topLeft = $('.mojs-line-tl-hook').position();
     let boxWidth = $('#main').width();
     let boxHeight = $('#main').height();
     lineTopLeft.tune({
       x: topLeft.top + boxWidth/2,
       y: topLeft.top - 10,
-      radius: boxHeight,
+      radius: boxWidth,
     });
 
     lineTopRight.tune({
@@ -183,7 +171,7 @@
     lineBottomRight.tune({
       x: boxWidth/2,
       y: boxHeight,  
-      radius: boxHeight,    
+      radius: boxWidth,    
     })
 
     lineBottomLeft.tune({
@@ -191,7 +179,7 @@
       y: boxHeight/2,
       radius: boxHeight,    
     })  
-    } 
+    } */
   
 
       
@@ -202,23 +190,23 @@
     link3,
   );
   
-  let linesArray = [  
+/*   let linesArray = [  
     lineTopLeft,
     lineTopRight,
     lineBottomRight,
     lineBottomLeft,
     ];
-    
+     */
   let shapeArray = [
     square2,
     cross,
   ];
   
-  timeline.add(linesArray);
+  /* timeline.add(linesArray); */
 
   timeline.add(shapeArray);
 
-  tuneLines();
+  // tuneLines();
 
   tuneShapes(shapeArray)
 
