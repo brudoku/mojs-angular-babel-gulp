@@ -1,8 +1,12 @@
-let lineAnim = function() {
+
+// const utilimport = require('../libs/util.ts');
+// const util = new utilimport();
+
+let lineAnim = () => {
     return {
         restrict: 'A',
         scope: {},
-        link: function(scope, elem, attrs) {
+        link: (scope, elem, attrs) => {
             const shiftCurve = mojs.easing.path( 'M0,100 C50,100 50,100 50,50 C50,0 50,0 100,0' );
             
             let boxWidth = $('#main').width();
@@ -91,7 +95,7 @@ let lineAnim = function() {
                 lineBottomRight,
                 lineBottomLeft,
                 ];
-            const timeline2 = new mojs.Timeline();
+            const lineTimeline = new mojs.Timeline();
             let tuneLines = () => {
                 let topLeft = $('.mojs-line-tl-hook').position();
                 let boxWidth = $('#main').width();
@@ -121,12 +125,12 @@ let lineAnim = function() {
                 })  
             }
                               
-            timeline2.add(linesArray);
-            timeline2.play();
+            lineTimeline.add(linesArray);
+            lineTimeline.play();
             tuneLines();
 
             $(document).on('click', function(){
-                timeline2.replay();
+                lineTimeline.replay();
             });
                       
             $(window).on('resize', function(e){

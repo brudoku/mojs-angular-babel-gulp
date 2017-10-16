@@ -4,11 +4,15 @@
   const mainCtrl = require('./controllers/mainCtrl.js');
   const otherCtrl = require('./controllers/otherCtrl.js');
   const lineAnim = require('./directives/lineAnim.ts');
+  const shapeAnim = require('./directives/shapeAnim.ts');
+  
   mainCtrl.$inject = ['$scope', '$timeout'];
   otherCtrl.$inject = ['$scope', '$timeout'];
   app.controller('mainCtrl', mainCtrl);
   app.controller('otherCtrl', otherCtrl);
   app.directive('lineAnim', lineAnim);
+  app.directive('shapeAnim', shapeAnim);
+  
   // app.run(['$rootScope', '$timeout', function($rootScope, $timeout) {
   //   $timeout(function(){console.log('run');}, 2000);  }]);
   const utilimport = require('./libs/util.ts');
@@ -59,84 +63,30 @@
     // x: {70:90},
     });
  
-/*LINES*/
-  let LINE_OPTS = {
-    shape: 'line',  
-    parent: '.mojs-line-tl-hook',    
-    stroke: 'white',
-    strokeWidth: 1,
-    duration: 1000,
-    opacity: {0:1},
-    // strokeDashoffset: { '100%': '200%' }, 
-    strokeDashoffset: { '-100%': '100%', easing: shiftCurve }, 
-    strokeDasharray: {'0.1%':'100%', easing: shiftCurve}, 
-    // strokeDashoffset: { '-100%': '100%', curve: shiftCurve }, 
-    // strokeDasharray: {'0.1%':'100%', curve: shiftCurve}, 
-    };
-/*   let LINE_OPTS_THEN = {
-      delay: 500,
-      strokeWidth: 0.1,
-      strokeDashoffset: { '100%': '-100%', curve: shiftCurve }, 
-      strokeDasharray: {'100%':'2%', curve: shiftCurve},   
-  }
-  let lineTopLeft = new mojs.Shape({
-    ...LINE_OPTS,
-    angle: 180,
-    radius: boxWidth / 2,
-    // scale: 1
-    }).then(LINE_OPTS_THEN);
 
-  let lineTopRight = new mojs.Shape({
-    ...LINE_OPTS, 
-    angle: 270,
-    radius: boxHeight / 2,
-    delay: 250,
-    }).then(LINE_OPTS_THEN);
 
-  let lineBottomRight = new mojs.Shape({
-    ...LINE_OPTS,
-    angle: 0,
-    radius: boxWidth / 2,
-    delay: 300
-    }).then(LINE_OPTS_THEN);
-
-  let lineBottomLeft = new mojs.Shape({
-    ...LINE_OPTS, 
-    angle: '-270',
-    radius: boxHeight / 2,
-    delay: 250,
-    }).then(LINE_OPTS_THEN);
- */
 
 /*SQUARE*/
-  let square2 = new mojs.Shape({
-    shape: 'polygon',
-    points: 4,
-    fill: 'none',
-    stroke: '#fff',
-    duration: 1000,
-    radius: {0: RAD, curve: 'cubic.in' } ,
-    opacity: {1:0, curve: 'cubic.in'},
-    strokeWidth: 1,
-    y: y - 90
-  })
-  /* .then({
-    // strokeWidth: {1:4, curve: aCurve.getEasing()}
-    // fill: 'red',
-      delay: 250,
-      angle: {0:45}
-    }) */
+  // let square2 = new mojs.Shape({
+  //   shape: 'polygon',
+  //   points: 4,
+  //   fill: 'none',
+  //   stroke: '#fff',
+  //   duration: 1000,
+  //   radius: {0: RAD, curve: 'cubic.in' } ,
+  //   opacity: {1:0, curve: 'cubic.in'},
+  //   strokeWidth: 1,
+  //   y: y - 90
+  // });
 
-  let cross = new mojs.Shape({
-    shape: 'cross',
-    y: util.getScreenY()/2 - y,    
-    stroke: '#fff',    
-    radius: {0: RAD, curve: 'cubic.in' },
-    opacity: {1:0},
-    y: y - 90
-    
-    // fill: 'red',
-    });
+  // let cross = new mojs.Shape({
+  //   shape: 'cross',
+  //   y: util.getScreenY()/2 - y,    
+  //   stroke: '#fff',    
+  //   radius: {0: RAD, curve: 'cubic.in' },
+  //   opacity: {1:0},
+  //   y: y - 90
+  //   });
 
 /*FUNC*/
   let rescale = () => {
@@ -148,40 +98,8 @@
       let rad = Math.abs(( w / RAD ) * SF) * 50;
       _.each(arr, function(shape){
         shape.tune({scale: rescale()});
-        // shape.tune({radius: rescale()*100});
-        
       });
       }
-  /* let tuneLines = () => {
-    let topLeft = $('.mojs-line-tl-hook').position();
-    let boxWidth = $('#main').width();
-    let boxHeight = $('#main').height();
-    lineTopLeft.tune({
-      x: topLeft.top + boxWidth/2,
-      y: topLeft.top - 10,
-      radius: boxWidth,
-    });
-
-    lineTopRight.tune({
-      x: topLeft.left + boxWidth,
-      y: topLeft.top  + boxHeight/2,    
-      radius: boxHeight,    
-    })
-      
-    lineBottomRight.tune({
-      x: boxWidth/2,
-      y: boxHeight,  
-      radius: boxWidth,    
-    })
-
-    lineBottomLeft.tune({
-      x: topLeft.left + 15,
-      y: boxHeight/2,
-      radius: boxHeight,    
-    })  
-    } */
-  
-
       
 /*TLINE*/
   timeline.add(
@@ -189,39 +107,25 @@
     link2, 
     link3,
   );
+
+  // let shapeArray = [
+  //   square2,
+  //   cross,
+  // ];
   
-/*   let linesArray = [  
-    lineTopLeft,
-    lineTopRight,
-    lineBottomRight,
-    lineBottomLeft,
-    ];
-     */
-  let shapeArray = [
-    square2,
-    cross,
-  ];
-  
-  /* timeline.add(linesArray); */
+  // timeline.add(shapeArray);
 
-  timeline.add(shapeArray);
-
-  // tuneLines();
-
-  tuneShapes(shapeArray)
+  // tuneShapes(shapeArray)
 
   timeline.play();
   
 /*EDIT*/
-  const mojsPlayer = new MojsPlayer({ add: square2 });
+  // const mojsPlayer = new MojsPlayer({ add: square2 });
   
   window.addEventListener('resize', function(e){
-    tuneShapes(shapeArray);
-    tuneLines();
-    // log(util.getScreenX())
-    // log(util.getWindowSize())
-    timeline.resume(0);
-    
+    // tuneShapes(shapeArray);
+    // tuneLines();
+    timeline.resume(0);    
     });
 $(window).trigger('resize')
   document.addEventListener('dblclick', function(){
