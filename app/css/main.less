@@ -39,7 +39,9 @@ body, html {
     }
   }
 }
-
+.isSelected{
+  // border: solid 3px #fff;
+}
 .nav ul li {
   // position: relative;
   color: #fff;
@@ -50,7 +52,7 @@ body, html {
   color: #fff;
 }
 
-.nav ul li:before {
+.nav ul li:before, .nav ul li.isSelected:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -65,7 +67,7 @@ body, html {
   transition: all 0.3s ease-in-out 0s;
 }
 
-.nav ul li:hover:before {
+.nav ul li:hover:before, .nav ul li.isSelected:before{
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
@@ -137,6 +139,11 @@ div.inner {
   display: none;
 }
 
+.bt{
+  z-index: 1;
+  position: absolute;
+}
+
 /*
   font-family: 'Geo', sans-serif;
   //futuristic
@@ -202,4 +209,3 @@ div.inner {
     justify-content: space-evenly; 
   }
   
-  .svg-text{}

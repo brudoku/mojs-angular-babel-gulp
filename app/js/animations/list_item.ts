@@ -1,8 +1,11 @@
 'use strict';
 
 var anim_list_item = function($timeout) {
+    console.log(Math.random() + 'x')
+    
     return {
         enter: function(element, done) {
+            console.log(Math.random() + 'x')
             var $elem = $(element);
             $elem.css('position', 'relative');
             $elem.snabbt({

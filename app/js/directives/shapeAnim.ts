@@ -7,7 +7,6 @@ let shapeAnim = () => {
         restrict: 'A',
         scope: {},
         link: (scope, elem, attrs) => {
-            console.log('shapen')
             const RAD = 320;
             const SF = 0.2;            
             const y = util.getScreenX()/2 - 150;

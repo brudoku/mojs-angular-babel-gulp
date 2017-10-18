@@ -2,7 +2,7 @@
 // const utilimport = require('../libs/util.ts');
 // const util = new utilimport();
 
-let lineAnim = () => {
+let lineAnim = ($timeout) => {
     return {
         restrict: 'A',
         scope: {},
@@ -124,19 +124,23 @@ let lineAnim = () => {
                   radius: boxHeight,    
                 })  
             }
-                              
+
             lineTimeline.add(linesArray);
             lineTimeline.play();
             tuneLines();
 
-            $(document).on('click', function(){
+            $(document).on('dblclick', function(){
                 lineTimeline.replay();
             });
-                      
+
+            $timeout(function(){
+                lineTimeline.playBackward();
+            },1000);
+
             $(window).on('resize', function(e){
-                console.log('res')
                 tuneLines();                
-            });                
+            });
+
         }
     }
 }
