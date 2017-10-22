@@ -1,13 +1,21 @@
 let mainCtrl = function($scope, $rootScope) {
+    /*     $scope.list = [];
+        let num = 0;
+        $scope.add = function() {
+            $scope.list.push(num);
+            num++;
+        } */
     $scope.pages = ['listen', 'bio', 'media'];
     $scope.currentPage = '';
 
     $scope.isPageSelected = function(title) {
         return title === $scope.currentPage;
     }
-
     $scope.navClick = function(title) {
-        $scope.currentPage = title;
+        if (title !== $scope.currentPage) {
+            $scope.$broadcast('page-changed-from', $scope.currentPage)
+            $scope.currentPage = title;
+        }
     }
     $scope.doit = function() {}
         // tl.play();
