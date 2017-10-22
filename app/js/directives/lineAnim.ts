@@ -129,7 +129,7 @@ let lineAnim = ($timeout) => {
             lineTimeline.play();
             tuneLines();
 
-            $(document).on('dblclick', function(){
+            scope.$on('page-changed-from', function(){
                 lineTimeline.replay();
             });
 
