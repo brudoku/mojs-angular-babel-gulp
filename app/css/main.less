@@ -10,8 +10,8 @@ body, html {
   width: 100%;  
   height: 100%;
   overflow: hidden;
-  // background-image: linear-gradient(0deg, #78113B, #BD51A0);    
-  background-image: linear-gradient(-90deg, #13121C, #0E1220);
+  background-image: linear-gradient(0deg, #78113B, #BD51A0);    
+  // background-image: linear-gradient(-90deg, #13121C, #0E1220);
   color: #f0f0f0;
 }
 
@@ -116,22 +116,10 @@ body, html {
 }
 
 div.inner {
-  padding: 4px 4px 8px 12px;
-  overflow:auto;
-}
-
-.path, .x {
-  stroke: 'red';
-  fill: 'white';
-  stroke-dasharray: 10;
-  stroke-dashoffset: 10;
-  stroke-width: 4px;
-  animation: dash 5s linear forwards;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
+  width: 90%;
+  margin: 0 auto;
+  p{
+    // margin: 20px;
   }
 }
 
@@ -207,5 +195,16 @@ div.inner {
   
   .space-evenly { 
     justify-content: space-evenly; 
+  }
+  
+
+
+  .anim_list_item{
+    // transform-style: preserve-3d;
+  }
+
+  .player{
+    width: 100%;
+    margin: 0 auto;
   }
   

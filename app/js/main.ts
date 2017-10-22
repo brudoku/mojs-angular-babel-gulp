@@ -1,21 +1,23 @@
 'use strict';
 /*...*/
-  const app = angular.module('app', ['ngAnimate']);
+  const app = angular.module('app', ['ngAnimate', 'plangular']);
   const mainCtrl = require('./controllers/mainCtrl.js');
-  const otherCtrl = require('./controllers/otherCtrl.js');
   const lineAnim = require('./directives/lineAnim.ts');
   const shapeAnim = require('./directives/shapeAnim.ts');
   const enterAnim = require('./animations/list_item.ts');
+  // const plangular = require('./libs/plangular.js');
   
-  
-  mainCtrl.$inject = ['$scope', '$timeout'];
-  otherCtrl.$inject = ['$scope', '$timeout'];
+  const plangular = require('./libs/plangular.js');
+
+  // console.log(plangular);
+  mainCtrl.$inject = ['$scope', '$timeout', '$rootScope'];
   app.controller('mainCtrl', mainCtrl);
-  app.controller('otherCtrl', otherCtrl);
   app.directive('lineAnim', lineAnim);
   app.directive('shapeAnim', shapeAnim);
   app.animation('.anim_list_item', enterAnim);
-  
+  app.config(function(plangularConfigProvider){
+    plangularConfigProvider.clientId = 'aeb5b3f63ac0518f8362010439a77ca1';
+  });
   
   // app.run(['$rootScope', '$timeout', function($rootScope, $timeout) {
   //   $timeout(function(){console.log('run');}, 2000);  }]);
