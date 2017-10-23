@@ -51,8 +51,61 @@
                 </div>
             </div>
             <div class="twelve columns">
-                <div id="listen" class="inner anim_list_item" ng-if="isPageSelected('listen')">
-                    <p>Listen - load player</p>
+                <div id="listen" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('listen')">
+
+                    <div plangular="http://soundcloud.com/bru-audio/tracks" class="mb3 bg-darken-2 rounded">
+                        <div ng-if="track" class="p2">
+                            <div class="relative" style="height:6rem;">
+                                <div class="absolute top-0 bottom-0 left-0 bg-aqua" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
+                                <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0"> {{ currentTime / duration }} </progress>
+                                <img ng-src="{{track.waveform_url}}" alt="{{track.title}}" style="width:100%;height:100%;-webkit-filter:contrast(200%);filter:contrast(200%);" class="absolute top-0 right-0 bottom-0 left-0" />
+
+                                <div class="absolute top-0 right-0 bottom-0 left-0" ng-click="seek($event)"></div>
+                                <!--                                 <div class="absolute m1 top-0 bottom-0 mt3 mb3 flex flex-center">
+                                    <button ng-click="playPause()" title="Play/Pause" class="flex-none h4 mr1 button button-transparent button-grow rounded">
+                                        <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+                                        <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+                                    </button>
+                                    <div>
+                                        <h3 class="h6 caps m0">{{track.user.username}}</h3>
+                                        <h2 class="h4 caps m0">{{track.title}}</h2>
+                                    </div>
+                                </div> -->
+                                <div class="flex flex-center">
+                                    <button class="flex-none h3 button button-narrow button-transparent" title="Play Previous Track" ng-click="previous()">
+                                        <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
+                                    </button>
+                                    <button class="flex-none h1 button button-transparent" title="Play/Pause" ng-click="playPause(index)">
+                                        <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+                                        <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+                                    </button>
+
+                                    <button class="flex-none h3 button mr2 button-narrow button-transparent" title="Play Next Track" ng-click="next()">
+                                        <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
+                                    </button>
+                                    <div class="flex-none h3 mr2">
+                                        <h3 class="h6 caps m0">{{track.user.username}}</h3>
+                                        <h2 class="h4 caps m0">{{track.title}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <ul ng-if="tracks" class="list-reset">
+                            <li ng-repeat="track in tracks | limitTo:8">
+                                <button class="flex flex-center h3 regular full-width button button-transparent ml3" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
+                                    <span class="flex-auto ">
+                                    {{track.title}}
+                                    </span>
+                                    <span class="h6 hide">
+                                    {{ track.duration / 1000 | hhmmss }}
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 
                     <div plangular="https://soundcloud.com/noisia/bijna-fijnmp3" class="py1 player">
                         <div class="relative" style="height:6rem;">
                             <div class="absolute top-0 bottom-0 left-0 bg-aqua" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
@@ -62,9 +115,9 @@
                             <div class="absolute top-0 right-0 bottom-0 left-0" ng-click="seek($event)"></div>
                             <div class="absolute m1 top-0 bottom-0 mt3 mb3 flex flex-center">
                                 <button ng-click="playPause()" title="Play/Pause" class="flex-none h4 mr1 button button-transparent button-grow rounded">
-                          <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
-                          <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
-                        </button>
+                                    <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+                                    <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+                                </button>
                                 <div>
                                     <h3 class="h6 caps m0">{{track.user.username}}</h3>
                                     <h2 class="h4 caps m0">{{track.title}}</h2>
@@ -72,9 +125,10 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
 
-                <div id="bio" class="inner anim_list_item" ng-if="isPageSelected('bio')">
+                <div id="bio" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('bio')">
                     <h2>Bop</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet mauris commodo quis imperdiet. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed.
                         Turpis egestas pretium aenean pharetra magna ac. Consectetur libero id faucibus nisl tincidunt. Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Eget nulla facilisi etiam dignissim diam quis enim. Amet consectetur adipiscing
@@ -85,7 +139,7 @@
                         habitant. Vestibulum lorem sed risus ultricies tristique nulla. Pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Massa vitae tortor condimentum lacinia quis vel eros. Dolor sit amet consectetur adipiscing
                         elit. Scelerisque viverra mauris in aliquam.</p>
                 </div>
-                <div id="media" class="inner anim_list_item" ng-if="isPageSelected('media')">
+                <div id="media" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('media')">
                     Media
                     <img src="https://place-hold.it/350x275/blue/white/black.jpeg&text=bru&fontsize=28" />
                 </div>
