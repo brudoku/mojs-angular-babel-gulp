@@ -42,26 +42,29 @@
   // let navPos = ;
 
   const LINK_OPTS = {
-    opacity: {0:1},
-    scale: {0.3: 1},
-    top: 0, left: util.getScreenX()/2,
+    // opacity: {0:1},
+    scale: {0: 1},
+    // top: 0, left: util.getScreenX()/2,
     delay: 1000,
     };
 
   const link1 = new mojs.Html({
     ...LINK_OPTS,
     el: '#l-1',
+    top: {'-200':0}
     });
 
   const link2 = new mojs.Html({
     ...LINK_OPTS,  
     el: '#l-2',
+    top: {'200':0}
+    
     });
 
-  const link3 = new mojs.Html({
-    ...LINK_OPTS,  
-    el: '#l-3',
-    });
+  // const link3 = new mojs.Html({
+  //   ...LINK_OPTS,  
+  //   el: '#l-3',
+  //   });
  
 /*FUNC*/
 
@@ -69,7 +72,7 @@
   timeline.add(
     link1, 
     link2, 
-    link3,
+    // link3,
   );
 
  
