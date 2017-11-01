@@ -8,7 +8,6 @@ let lineAnim = ($timeout) => {
         scope: {},
         link: (scope, elem, attrs) => {
             const shiftCurve = mojs.easing.path( 'M0,100 C50,100 50,100 50,50 C50,0 50,0 100,0' );
-            
             let boxWidth = $('#main').width();
             let boxHeight = $('#main').height();
             
@@ -34,7 +33,7 @@ let lineAnim = ($timeout) => {
                 // ...LINE_OPTS,
                 shape: 'line',
                 parent: '.mojs-line-tl-hook',
-                stroke: 'white',
+                stroke: '#000',
                 strokeWidth: 1,
                 duration: 1000,
                 opacity: { 0: 1 },                
@@ -49,7 +48,7 @@ let lineAnim = ($timeout) => {
                 // ...LINE_OPTS,
                 shape: 'line',
                 parent: '.mojs-line-tl-hook',
-                stroke: 'white',
+                stroke: '#000',
                 strokeWidth: 1,
                 duration: 1000,
                 opacity: { 0: 1 },                
@@ -64,7 +63,7 @@ let lineAnim = ($timeout) => {
                 // ...LINE_OPTS,
                 shape: 'line',
                 parent: '.mojs-line-tl-hook',
-                stroke: 'white',
+                stroke: '#000',
                 strokeWidth: 1,
                 duration: 1000,
                 opacity: { 0: 1 },                
@@ -79,7 +78,7 @@ let lineAnim = ($timeout) => {
                 // ...LINE_OPTS,
                 shape: 'line',
                 parent: '.mojs-line-tl-hook',
-                stroke: 'white',
+                stroke: '#000',
                 strokeWidth: 1,
                 duration: 1000,
                 opacity: { 0: 1 },                

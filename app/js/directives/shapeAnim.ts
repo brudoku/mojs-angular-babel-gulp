@@ -15,7 +15,7 @@ let shapeAnim = () => {
                 shape: 'polygon',
                 points: 4,
                 fill: 'none',
-                stroke: '#fff',
+                stroke: '#000',
                 duration: 1000,
                 radius: {0: RAD, curve: 'cubic.in' } ,
                 opacity: {1:0, curve: 'cubic.in'},
@@ -26,7 +26,7 @@ let shapeAnim = () => {
             let cross = new mojs.Shape({
                 shape: 'cross',
                 // y: util.getScreenY()/2 - y,    
-                stroke: '#fff',    
+                stroke: '#000',    
                 radius: {0: RAD, curve: 'cubic.in' },
                 opacity: {1:0},
                 // y: y - 90

@@ -21,11 +21,12 @@
     <div class="container" id="main" ng-controller="mainCtrl">
         <div line-anim class="mojs-line-tl-hook"></div>
         <div shape-anim class="mojs-line-tl-hook"></div>
+        <!-- <div link-anim class="mojs-line-tl-hook"></div> -->
 
         <div class="row">
             <div class="flex-container center">
                 <svg id="logo" class="flex-item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" height="100" min-x="20" preserveAspectRatio="xMinYMin">
-                    <text x="29" y="35" class="svg-text" style="fill: #fff;" stroke="#ddd">
+                    <text x="29" y="35" class="svg-text" style="fill: #000;" stroke="#000">
 
                         Bru.audio
                     </text>
@@ -37,16 +38,17 @@
             <div class="twelve columns">
 
                 <div id="#nav" class="nav">
+
                     <ul class="flex-container center">
-                        <li class="flex-item" id="l-1" ng-click="navClick('listen')" ng-class="{'isSelected' : isPageSelected('listen')}">Listen</li>
-                        <li class="flex-item" id="l-2" ng-click="navClick('bio')" ng-class="{'isSelected' : isPageSelected('bio')}">Bio</li>
+                        <li link-anim class="flex-item" id="l-1" ng-click="navClick('listen')" ng-class="{'isSelected' : isPageSelected('listen')}">Listen</li>
+                        <li link-anim class="flex-item" id="l-2" ng-click="navClick('bio')" ng-class="{'isSelected' : isPageSelected('bio')}">Bio</li>
                         <!-- <li class="flex-item" id="l-3" ng-click="navClick('media')" ng-class="{'isSelected' : isPageSelected('media')}">Media</li> -->
                     </ul>
                 </div>
             </div>
             <div class="twelve columns">
                 <div id="listen" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('listen')">
-                    <div plangular="http://soundcloud.com/bru-audio/tracks" class="mb3 bg-darken-2 rounded">
+                    <div plangular="http://soundcloud.com/bru-audio/tracks" class="mb3 rounded">
                         <div ng-if="track" class="p2">
                             <div class="relative" style="height:6rem;">
                                 <div class="absolute top-0 bottom-0 left-0 bg-aqua" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
@@ -74,9 +76,9 @@
                             </div>
                         </div>
 
-                        <ul ng-if="tracks" class="list-reset tracklist">
+                        <ul ng-if="tracks" class="list-reset tracklist" id="tracklist">
                             <li ng-repeat="track in tracks | limitTo:8" ng-click="trackSelect()">
-                                <button class="flex track-title flex-center h3 regular full-width button button-transparent" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
+                                <button link-anim class="track-title flex flex-center h3 regular full-width button button-transparent" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
                                     <span class="flex-auto">
                                     {{track.title}}
                                     </span>
@@ -86,11 +88,10 @@
                                 </button>
                             </li>
                         </ul>
-
                     </div>
+                </div>
 
-
-                    <!-- 
+                <!-- 
                     <div plangular="https://soundcloud.com/noisia/bijna-fijnmp3" class="py1 player">
                         <div class="relative" style="height:6rem;">
                             <div class="absolute top-0 bottom-0 left-0 bg-aqua" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
@@ -111,7 +112,6 @@
                         </div>
                     </div>
                     -->
-                </div>
 
                 <div id="bio" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('bio')">
                     <h2>Bop</h2>

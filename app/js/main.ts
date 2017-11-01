@@ -1,18 +1,17 @@
 'use strict';
 /*...*/
   const app = angular.module('app', ['ngAnimate', 'plangular']);
-  const mainCtrl = require('./controllers/mainCtrl.js');
-  const lineAnim = require('./directives/lineAnim.ts');
+  const mainCtrl  = require('./controllers/mainCtrl.js');
+  const lineAnim  = require('./directives/lineAnim.ts');
+  const linkAnim  = require('./directives/linkAnim.ts');
   const shapeAnim = require('./directives/shapeAnim.ts');
   const enterAnim = require('./animations/list_item.ts');
-  // const plangular = require('./libs/plangular.js');
-  
   const plangular = require('./libs/plangular.js');
-
-  // console.log(plangular);
+  
   mainCtrl.$inject = ['$scope', '$timeout', '$rootScope'];
   app.controller('mainCtrl', mainCtrl);
   app.directive('lineAnim', lineAnim);
+  app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
   app.animation('.anim_list_item', enterAnim);
   app.config(function(plangularConfigProvider){
@@ -69,6 +68,35 @@
 /*FUNC*/
 
 /*TLINE*/
+
+
+// const shiftCurve = mojs.easing.path( 'M0,100 C50,100 50,100 50,50 C50,0 50,0 100,0' );
+// const scaleCurve = mojs.easing.path( 'M0,100 C21.3776817,95.8051376 50,77.3262711 50,0 C50,80.1708527 76.6222458,93.9449005 100,100' );
+const links = document.querySelector('#nav')
+const line = new mojs.Shape({
+  shape:        'line',
+  top:          0,
+  stroke:       'red',
+  strokeWidth:  10,
+  parent:       links,
+  isShowStart:  true,
+  radiusY:      0,
+  scaleX:       { 1: 1, curve: scaleCurve },
+  origin:       { '0 50%': '100% 50%', easing: shiftCurve },
+  isForce3d:    true
+});
+
+// $('.trax, #logo, .flex-item, .play, .box').hover( (e) => {
+// // $('.flex-item').on( 'mouseover', (e) => {
+  
+//   console.log('ccc')
+//   const $el = $(e.target);
+//   line
+//     .tune({ y: $el.position().top + 20 })
+//     .replay();
+// });
+
+
   timeline.add(
     link1, 
     link2, 
