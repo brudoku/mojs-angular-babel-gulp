@@ -27,7 +27,6 @@
             <div class="flex-container center">
                 <svg id="logo" class="flex-item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" height="100" min-x="20" preserveAspectRatio="xMinYMin">
                     <text x="29" y="35" class="svg-text" style="fill: #000;" stroke="#000">
-
                         Bru.audio
                     </text>
                 </svg>
@@ -36,112 +35,27 @@
 
         <div class="row">
             <div class="twelve columns">
-
                 <div id="#nav" class="nav">
-
                     <ul class="flex-container center">
-                        <li link-anim class="flex-item" id="l-1" ng-click="navClick('listen')" ng-class="{'isSelected' : isPageSelected('listen')}">Listen</li>
-                        <li link-anim class="flex-item" id="l-2" ng-click="navClick('bio')" ng-class="{'isSelected' : isPageSelected('bio')}">Bio</li>
+                        <li class="anim-line flex-item" id="l-1"><a ui-sref="topView.listen">listen</a></li>
+                        <li class="anim-line flex-item" id="l-2"><a ui-sref="topView.bio">bio</a></li>
                         <!-- <li class="flex-item" id="l-3" ng-click="navClick('media')" ng-class="{'isSelected' : isPageSelected('media')}">Media</li> -->
                     </ul>
                 </div>
             </div>
-            <div class="twelve columns">
-                <div id="listen" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('listen')">
-                    <div plangular="http://soundcloud.com/bru-audio/tracks" class="mb3 rounded">
-                        <div ng-if="track" class="p2">
-                            <div class="relative" style="height:6rem;">
-                                <div class="absolute top-0 bottom-0 left-0 bg-aqua" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
-                                <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0"> {{ currentTime / duration }} </progress>
-                                <img ng-src="{{track.waveform_url}}" alt="{{track.title}}" style="width:100%;height:100%;-webkit-filter:contrast(200%);filter:contrast(200%);" class="absolute top-0 right-0 bottom-0 left-0" />
-
-                                <div class="absolute top-0 right-0 bottom-0 left-0" ng-click="seek($event)"></div>
-                                <div class="flex flex-center">
-                                    <button class="flex-none h3 button button-narrow button-transparent" title="Play Previous Track" ng-click="previous()">
-                                            <svg class="icon geomicon" data-icon="previous" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 H8 V14 L28 4 V28 L8 18 V28 H4 z "></path></svg>
-                                        </button>
-                                    <button class="flex-none h1 button button-transparent" title="Play/Pause" ng-click="playPause(index)">
-                                            <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
-                                            <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
-                                        </button>
-
-                                    <button class="flex-none h3 button mr2 button-narrow button-transparent" title="Play Next Track" ng-click="next()">
-                                            <svg class="icon geomicon" data-icon="next" viewBox="0 0 32 32" style="fill:currentcolor"><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
-                                        </button>
-                                    <div class="flex-none h3 mr2">
-                                        <h3 class="h6 caps m0">{{track.user.username}}</h3>
-                                        <h2 class="h4 caps m0">{{track.title}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <ul ng-if="tracks" class="list-reset tracklist" id="tracklist">
-                            <li ng-repeat="track in tracks | limitTo:8" ng-click="trackSelect()">
-                                <button link-anim class="track-title flex flex-center h3 regular full-width button button-transparent" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
-                                    <span class="flex-auto">
-                                    {{track.title}}
-                                    </span>
-                                    <span class="h6 hide">
-                                    {{ track.duration / 1000 | hhmmss }}
-                                    </span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 
-                    <div plangular="https://soundcloud.com/noisia/bijna-fijnmp3" class="py1 player">
-                        <div class="relative" style="height:6rem;">
-                            <div class="absolute top-0 bottom-0 left-0 bg-aqua" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
-                            <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0"> {{ currentTime / duration }} </progress>
-                            <img ng-src="{{track.waveform_url}}" alt="{{track.title}} waveform" style="width:100%;height:100%;-webkit-filter:contrast(200%);filter:contrast(200%);" class="absolute top-0 right-0 bottom-0 left-0" />
-
-                            <div class="absolute top-0 right-0 bottom-0 left-0" ng-click="seek($event)"></div>
-                            <div class="absolute m1 top-0 bottom-0 mt3 mb3 flex flex-center">
-                                <button ng-click="playPause()" title="Play/Pause" class="flex-none h4 mr1 button button-transparent button-grow rounded">
-                                    <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
-                                    <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
-                                </button>
-                                <div>
-                                    <h3 class="h6 caps m0">{{track.user.username}}</h3>
-                                    <h2 class="h4 caps m0">{{track.title}}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-                <div id="bio" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('bio')">
-                    <h2>Bop</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet mauris commodo quis imperdiet. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed.
-                        Turpis egestas pretium aenean pharetra magna ac. Consectetur libero id faucibus nisl tincidunt. Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Eget nulla facilisi etiam dignissim diam quis enim. Amet consectetur adipiscing
-                        elit ut aliquam purus sit amet. Nec ultrices dui sapien eget mi. Turpis egestas integer eget aliquet nibh praesent tristique magna. Ac turpis egestas maecenas pharetra. Mi quis hendrerit dolor magna. Quam nulla porttitor massa
-                        id. Purus in massa tempor nec feugiat nisl pretium. Imperdiet sed euismod nisi porta. Mi tempus imperdiet nulla malesuada pellentesque elit. Viverra nam libero justo laoreet sit. Eleifend mi in nulla posuere sollicitudin aliquam
-                        ultrices sagittis. Cras fermentum odio eu feugiat pretium nibh ipsum consequat. Condimentum id venenatis a condimentum vitae. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Sed viverra ipsum nunc aliquet
-                        bibendum. Et ultrices neque ornare aenean euismod elementum nisi quis. Pharetra diam sit amet nisl suscipit. Porta nibh venenatis cras sed felis eget velit aliquet. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque
-                        habitant. Vestibulum lorem sed risus ultricies tristique nulla. Pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Massa vitae tortor condimentum lacinia quis vel eros. Dolor sit amet consectetur adipiscing
-                        elit. Scelerisque viverra mauris in aliquam.</p>
-                </div>
-                <div id="media" class="inner ng-cloak anim_list_item" ng-if="isPageSelected('media')">
-                    Media
-                    <img src="https://place-hold.it/350x275/blue/white/black.jpeg&text=bru&fontsize=28" />
-                </div>
-            </div>
+            <div ui-view></div>
         </div>
     </div>
 
-    <!-- cdn scripts -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
     <script src="//cdn.jsdelivr.net/mojs-player/latest/mojs-player.min.js"></script>
     <script src="//cdn.jsdelivr.net/mojs-curve-editor/latest/mojs-curve-editor.min.js"></script>
-
-    <!-- bower scripts -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
     <script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/3.0.1/plangular.min.js"></script>
     <script src="bower_components/snabbt.js/snabbt.js"></script>
     <script src="./js/bundled.js"></script>

@@ -1,6 +1,6 @@
 'use strict';
 /*...*/
-  const app = angular.module('app', ['ngAnimate', 'plangular']);
+  const app = angular.module('app', ['ui.router', 'ngAnimate', 'plangular']);
   const mainCtrl  = require('./controllers/mainCtrl.js');
   const lineAnim  = require('./directives/lineAnim.ts');
   const linkAnim  = require('./directives/linkAnim.ts');
@@ -14,12 +14,50 @@
   app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
   app.animation('.anim_list_item', enterAnim);
-  app.config(function(plangularConfigProvider){
-    plangularConfigProvider.clientId = 'aeb5b3f63ac0518f8362010439a77ca1';
+  app.config(function(plangularConfigProvider, $stateProvider) {
+    plangularConfigProvider.clientId = "aeb5b3f63ac0518f8362010439a77ca1";
+    $stateProvider
+      .state("topView", {
+        url: "",
+        abstract: true,
+        reload: false,
+        templateUrl: "/assets/main.html"
+      })
+      .state("topView.listen", {
+        url: "/listen",
+        views: {
+          posts: {
+            templateUrl: "/assets/listen.html",
+            controller: "mainCtrl as mainCtrl"
+          }
+        } /* ,
+      resolve: {
+        postTitlesCats: function(PostHelper) {
+          return PostHelper.postCatFn();
+        }
+      } */
+      })
+      .state("topView.bio", {
+        url: "/bio",
+        views: {
+          posts: {
+            templateUrl: "/assets/bio.html",
+            controller: "mainCtrl as mainCtrl"
+          }
+        } /* ,
+      resolve: {
+        postTitlesCats: function(PostHelper) {
+          return PostHelper.postCatFn();
+        }
+      } */
+      });
   });
-  
-  // app.run(['$rootScope', '$timeout', function($rootScope, $timeout) {
-  //   $timeout(function(){console.log('run');}, 2000);  }]);
+  app.run(["$rootScope", "$timeout", "$state", function($rootScope, $timeout, $state) {
+              $timeout(function() {
+                console.log("run");
+                $state.go("topView.listen");
+              }, 2000);
+            }]);
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();
   function log (msg){
@@ -115,5 +153,3 @@ const line = new mojs.Shape({
   document.addEventListener('dblclick', function(){
       timeline.replay();
     });
-
-
