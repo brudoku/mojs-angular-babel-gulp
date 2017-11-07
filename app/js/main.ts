@@ -26,7 +26,7 @@
       .state("topView.listen", {
         url: "/listen",
         views: {
-          posts: {
+          'listen': {
             templateUrl: "/assets/listen.html",
             controller: "mainCtrl as mainCtrl"
           }
@@ -40,7 +40,7 @@
       .state("topView.bio", {
         url: "/bio",
         views: {
-          posts: {
+          'bio': {
             templateUrl: "/assets/bio.html",
             controller: "mainCtrl as mainCtrl"
           }
