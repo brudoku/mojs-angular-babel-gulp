@@ -1,4 +1,15 @@
 <div id="listen" class="inner anim_list_item">
+    <li>
+        <button link-anim class="track-title flex flex-center h3 regular full-width button button-transparent">
+                    <span class="flex-auto">
+                    track.title
+                    </span>
+                    <span class="h6 hide">
+                     track.duration / 1000 | hhmmss 
+                    </span>
+                </button>
+    </li>
+
     <div plangular="http://soundcloud.com/bru-audio/tracks" class="mb3 rounded">
         <div ng-if="track" class="p2">
             <div class="relative" style="height:6rem;">
@@ -29,7 +40,7 @@
 
         <ul ng-if="tracks" class="list-reset tracklist" id="tracklist">
             <li ng-repeat="track in tracks | limitTo:8" ng-click="trackSelect()">
-                <button link-anim class="track-title flex flex-center h3 regular full-width button button-transparent" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
+                <button link-anim class="anim-line track-title flex flex-center h3 regular full-width button button-transparent" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
                     <span class="flex-auto">
                     {{track.title}}
                     </span>
