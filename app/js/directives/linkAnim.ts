@@ -33,7 +33,8 @@ let linkAnim = () => {
             });
             $elem.mouseout(() => {
             line.playBackward();
-            });              
+            });
+            console.log('link')  
         }
     }
 }

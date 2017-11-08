@@ -40,7 +40,7 @@
 
         <ul ng-if="tracks" class="list-reset tracklist" id="tracklist">
             <li ng-repeat="track in tracks | limitTo:8" ng-click="trackSelect()">
-                <button link-anim class="anim-line track-title flex flex-center h3 regular full-width button button-transparent" title="Play {{track.title}}" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
+                <button link-anim class="track-title flex flex-center h3 regular full-width button button-transparent" ng-class="{'is-active': player.playing === track.src }" ng-click="playPause($index)">
                     <span class="flex-auto">
                     {{track.title}}
                     </span>

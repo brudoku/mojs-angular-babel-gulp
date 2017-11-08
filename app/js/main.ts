@@ -6,6 +6,8 @@
   const linkAnim  = require('./directives/linkAnim.ts');
   const shapeAnim = require('./directives/shapeAnim.ts');
   const enterAnim = require('./animations/list_item.ts');
+  const lazyService = require("./services/lazyService.ts");
+  
   const plangular = require('./libs/plangular.js');
   
   mainCtrl.$inject = ['$scope', '$timeout', '$rootScope'];
@@ -14,6 +16,8 @@
   app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
   app.animation('.anim_list_item', enterAnim);
+  app.service("lazyService", lazyService);
+  
   app.config(function(plangularConfigProvider, $stateProvider) {
     plangularConfigProvider.clientId = "aeb5b3f63ac0518f8362010439a77ca1";
     $stateProvider
@@ -30,12 +34,22 @@
             templateUrl: "/assets/listen.html",
             controller: "mainCtrl as mainCtrl"
           }
-        } /* ,
-      resolve: {
-        postTitlesCats: function(PostHelper) {
-          return PostHelper.postCatFn();
+        },
+        resolve: {
+          lazy: function($timeout, lazyService) {
+            return function() {           
+              console.log("resolve**********");
+              console.log(lazyService.lazyFn());
+              return lazyService.lazyFn();
+            }();
+            
+            // return function() {
+              // return $timeout(function() {
+              //   return {val: 'bru*************'};
+              // }, 5000);
+            // }();
+          }
         }
-      } */
       })
       .state("topView.bio", {
         url: "/bio",
@@ -53,10 +67,9 @@
       });
   });
   app.run(["$rootScope", "$timeout", "$state", function($rootScope, $timeout, $state) {
-              $timeout(function() {
-                console.log("run");
-                $state.go("topView.listen");
-              }, 2000);
+              // $timeout(function() {
+              //   $state.go("topView.listen");
+              // }, 2000);
             }]);
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();
