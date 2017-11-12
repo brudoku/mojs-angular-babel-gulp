@@ -1,9 +1,10 @@
-let mainCtrl = function($scope, $rootScope, lazy) {
-    console.log("mainctrl -------------");
-    setTimeout(function() {
-        console.log('@@@@@@@@@@@@@@@@@@');
-        console.log(lazy);
-    }, 7000);
+let mainCtrl = function($scope, lazy) {
+    // setTimeout(function() {
+    // console.log(lazy());
+    console.log('@@@@@@@@@@@@@@@@@@');
+    console.log(lazy);
+
+    // }, 3000);
     $scope.pages = ["listen", "bio", "media"];
     $scope.currentPage = "";
 
@@ -19,6 +20,12 @@ let mainCtrl = function($scope, $rootScope, lazy) {
     $scope.trackSelect = function() {
         $scope.$broadcast("page-changed-from");
     };
+
+    $scope.$on("directive-loaded", function() {
+        console.log("directive loaded");
+    });
+
+
 };
 
 module.exports = mainCtrl;

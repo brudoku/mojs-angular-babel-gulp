@@ -2,10 +2,10 @@
 // const utilimport = require('../libs/util.ts');
 // const util = new utilimport();
 
-let linkAnim = () => {
+let linkAnim = ($rootScope) => {
     return {
         restrict: 'A',
-        scope: {},
+        scope: false,
         link: (scope, elem, attrs) => {
             let boxWidth = $('#main').width();
             let boxHeight = $('#main').width();
@@ -15,7 +15,7 @@ let linkAnim = () => {
             const scaleCurve = mojs.easing.path( 'M0,100 C21.3776817,95.8051376 50,77.3262711 50,0 C50,80.1708527 76.6222458,93.9449005 100,0' );            
             const line = new mojs.Shape({
                 shape:        'line',
-                top:          -($elem.height()/1.1),
+                top:          -($elem.height()/1.2),
                 parent:       $elem.parent(),
                 stroke: '#000',
                 strokeWidth: 1,
@@ -27,14 +27,16 @@ let linkAnim = () => {
                 // strokeDasharray: { '0.1%': '100%', easing: shiftCurve },                  
               });
             $elem.mouseover(()=>{
-            line
-            .tune({ y: $elem.position().top + 20 })
-            .replay();
+                line
+                .tune({ y: $elem.position().top + 20 })
+                .replay();
             });
             $elem.mouseout(() => {
-            line.playBackward();
+                line.playBackward();
             });
-            console.log('link')  
+            // console.log("link---------------------end");
+            // console.log(scope);
+            $rootScope.$broadcast("directive-loaded");
         }
     }
 }
