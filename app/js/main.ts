@@ -38,16 +38,12 @@
         resolve: {
           lazy: function($timeout, lazyService) {
             return function() {           
-              console.log("resolve**********");
-              console.log(lazyService.lazyFn());
-              return lazyService.lazyFn();
+              return lazyService.lazyFn().then(function(response) {
+                console.log('++++++++++');
+                console.log(response);
+                return response;
+              });
             }();
-            
-            // return function() {
-              // return $timeout(function() {
-              //   return {val: 'bru*************'};
-              // }, 5000);
-            // }();
           }
         }
       })
