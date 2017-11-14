@@ -1,10 +1,11 @@
-let mainCtrl = function($scope, lazy) {
-    // setTimeout(function() {
-    // console.log(lazy());
-    console.log('@@@@@@@@@@@@@@@@@@');
-    console.log(lazy);
+let mainCtrl = function($scope, lazyService) {
 
-    // }, 3000);
+    /*     console.log(lazyService);
+        lazyService.lazyFn().then(function(response) {
+            console.log("***************response");
+            console.log(response);
+        });
+     */
     $scope.pages = ["listen", "bio", "media"];
     $scope.currentPage = "";
 
@@ -24,8 +25,6 @@ let mainCtrl = function($scope, lazy) {
     $scope.$on("directive-loaded", function() {
         console.log("directive loaded");
     });
-
-
-};
+};;
 
 module.exports = mainCtrl;

@@ -10,15 +10,16 @@
   
   const plangular = require('./libs/plangular.js');
   
-  mainCtrl.$inject = ['$scope', '$timeout', '$rootScope'];
   app.controller('mainCtrl', mainCtrl);
   app.directive('lineAnim', lineAnim);
   app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
   app.animation('.anim_list_item', enterAnim);
   app.service("lazyService", lazyService);
+  mainCtrl.$inject = ["$scope", "$timeout", "$rootScope", "$state", "lazyService"];;
   
   app.config(function(plangularConfigProvider, $stateProvider) {
+
     plangularConfigProvider.clientId = "aeb5b3f63ac0518f8362010439a77ca1";
     $stateProvider
       .state("topView", {
@@ -30,29 +31,44 @@
       .state("topView.listen", {
         url: "/listen",
         views: {
-          'listen': {
+          listen: {
             templateUrl: "/assets/listen.html",
-            controller: "mainCtrl as mainCtrl"
+            controller: "mainCtrl"
           }
         },
+        data: {
+          customData1: 5,
+          customData2: "blue"
+        }/* ,
         resolve: {
+          lazy: function(lazyService) {
+            // var ret;
+            // return lazyService.lazyFn();
+            lazyService.lazyFn().then(function(val) {
+              console.log(val);
+            });
+            return lazyService.lazyFn();
+            // return { value: "simple!" };
+          }
+        } */
+        /*         resolve: {
           lazy: function($timeout, lazyService) {
             return function() {           
-              return lazyService.lazyFn().then(function(response) {
+              lazyService.lazyFn().then(function(response) {
                 console.log('++++++++++');
                 console.log(response);
                 return response;
               });
             }();
           }
-        }
+        } */
       })
       .state("topView.bio", {
         url: "/bio",
         views: {
-          'bio': {
+          bio: {
             templateUrl: "/assets/bio.html",
-            controller: "mainCtrl as mainCtrl"
+            controller: "mainCtrl"
           }
         } /* ,
       resolve: {
@@ -66,6 +82,12 @@
               // $timeout(function() {
               //   $state.go("topView.listen");
               // }, 2000);
+              $rootScope.$on("$viewContentLoading", function() {
+                console.log("$viewContentLoading");
+              });
+              $rootScope.$on("$viewContentLoaded", function() {
+                console.log("$viewContentLoaded");
+              });                          
             }]);
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();

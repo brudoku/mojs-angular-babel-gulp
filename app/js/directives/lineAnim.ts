@@ -140,6 +140,11 @@ let lineAnim = ($timeout) => {
                 tuneLines();                
             });
 
+            scope.$on("directive-loaded", function() {
+                console.log("directive **************");
+                lineTimeline.replay();
+            });            
+
         }
     }
 }

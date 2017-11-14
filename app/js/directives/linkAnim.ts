@@ -5,8 +5,9 @@
 let linkAnim = ($rootScope) => {
     return {
         restrict: 'A',
-        scope: false,
+        scope: {trackName:'@'},
         link: (scope, elem, attrs) => {
+            console.log('track===='+scope.trackName)
             let boxWidth = $('#main').width();
             let boxHeight = $('#main').width();
             
@@ -36,7 +37,7 @@ let linkAnim = ($rootScope) => {
             });
             // console.log("link---------------------end");
             // console.log(scope);
-            $rootScope.$broadcast("directive-loaded");
+            $rootScope.$broadcast("directive-loaded", scope.trackName);
         }
     }
 }
