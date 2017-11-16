@@ -2,7 +2,7 @@
 // const utilimport = require('../libs/util.ts');
 // const util = new utilimport();
 
-let lineAnim = ($timeout) => {
+let lineAnim = ($timeout, $rootScope) => {
     return {
         restrict: 'A',
         scope: {},
@@ -127,7 +127,14 @@ let lineAnim = ($timeout) => {
             lineTimeline.add(linesArray);
             lineTimeline.play();
             tuneLines();
-
+            
+            scope.$on("$stateChangeSuccess", function(event,toState,toParams,fromState,fromParams) {
+                console.log("stateChangeSuccess");
+                lineTimeline.replay();
+            
+                //   $rootScope.preloader = false;
+            });
+            
             scope.$on('page-changed-from', function(){
                 lineTimeline.replay();
             });

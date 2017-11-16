@@ -1,22 +1,28 @@
 'use strict';
 /*...*/
-  const app = angular.module('app', ['ui.router', 'ngAnimate', 'plangular']);
-  const mainCtrl  = require('./controllers/mainCtrl.js');
-  const lineAnim  = require('./directives/lineAnim.ts');
-  const linkAnim  = require('./directives/linkAnim.ts');
-  const shapeAnim = require('./directives/shapeAnim.ts');
-  const enterAnim = require('./animations/list_item.ts');
-  const lazyService = require("./services/lazyService.ts");
+  const app         = angular.module('app', ['ui.router', 'ngAnimate', 'plangular']);
+  const mainCtrl    = require('./controllers/mainCtrl.ts');
+  const lineAnim    = require('./directives/lineAnim.ts');
+  const linkAnim    = require('./directives/linkAnim.ts');
+  const shapeAnim   = require('./directives/shapeAnim.ts');
+  const loader      = require("./directives/loader.ts");
   
-  const plangular = require('./libs/plangular.js');
+  const enterAnim   = require('./animations/list_item.ts');
+  const lazyService = require("./services/lazyService.ts");
+  const Utility     = require("./services/Utility.ts");
+  
+  const plangular   = require('./libs/plangular.js');
   
   app.controller('mainCtrl', mainCtrl);
   app.directive('lineAnim', lineAnim);
   app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
+  app.directive('loader', loader);
   app.animation('.anim_list_item', enterAnim);
   app.service("lazyService", lazyService);
-  mainCtrl.$inject = ["$scope", "$timeout", "$rootScope", "$state", "lazyService"];;
+  app.service("Utility", Utility);
+  
+  mainCtrl.$inject = ["$scope", "$rootScope", "$state", "$timeout", "lazyService", "Utility"];
   
   app.config(function(plangularConfigProvider, $stateProvider) {
 
@@ -36,21 +42,17 @@
             controller: "mainCtrl"
           }
         },
-        data: {
-          customData1: 5,
-          customData2: "blue"
-        }/* ,
         resolve: {
           lazy: function(lazyService) {
             // var ret;
             // return lazyService.lazyFn();
-            lazyService.lazyFn().then(function(val) {
-              console.log(val);
-            });
+            // lazyService.lazyFn().then(function(val) {
+            //   console.log(val);
+            // });
             return lazyService.lazyFn();
             // return { value: "simple!" };
           }
-        } */
+        }
         /*         resolve: {
           lazy: function($timeout, lazyService) {
             return function() {           
@@ -82,12 +84,25 @@
               // $timeout(function() {
               //   $state.go("topView.listen");
               // }, 2000);
-              $rootScope.$on("$viewContentLoading", function() {
+                console.log("$viewContentLoaded!!");
+              
+             $rootScope.$on("$stateChangeStart", function(event,toState,toParams,fromState,fromParams) {
+              // $rootScope.preloader = true;
+              $rootScope.$broadcast("loader");
+                console.log("$viewContentLoaded");
+              
+            });
+            $rootScope.$on("$stateChangeSuccess", function(event,toState,toParams,fromState,fromParams) {
+                console.log("$viewContentLoaded!!!!!!!!!!!!!!!");
+
+              $rootScope.preloader = false;
+            });               
+               $rootScope.$on("$viewContentLoading", function() {
                 console.log("$viewContentLoading");
               });
               $rootScope.$on("$viewContentLoaded", function() {
                 console.log("$viewContentLoaded");
-              });                          
+              });                           
             }]);
   const utilimport = require('./libs/util.ts');
   const util = new utilimport();
