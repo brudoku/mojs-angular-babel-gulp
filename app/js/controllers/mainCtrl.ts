@@ -4,8 +4,6 @@ let mainCtrl = function($scope, $rootScope, $state, $timeout, lazyService, Utili
         console.log(response);
     });
 
-    Utility.foo();
-
     $scope.pages = ["listen", "bio", "media"];
     $scope.currentPage = "";
 
