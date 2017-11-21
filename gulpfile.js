@@ -51,7 +51,8 @@ gulp.task('reloadconnect', function() {
 
 gulp.task('watch', function() {
     gulp.watch('./app/js/**', ['browserify', 'reloadconnect']);
-    gulp.watch('./app/css/*.*', ['less', 'process-css', 'reloadconnect']);
+    gulp.watch("./app/js/**/**", ["browserify", "reloadconnect"]);
+    gulp.watch('./app/css/*.*', ['process-css', 'reloadconnect']);
     gulp.watch('./app/*.html', ['reloadconnect']);
 });
 
@@ -79,12 +80,6 @@ gulp.task('browserifyDist', function() {
 });
 
 /*=====CSS=====*/
-gulp.task('less', function() {
-    return gulp.src('./app/css/main.less')
-        .pipe(less())
-        .pipe(gulp.dest('./app/css'));
-});
-
 gulp.task('process-css', function() {
     var opts = { comments: true, spare: true };
     gulp.src('./app/css/main.less')
@@ -120,6 +115,6 @@ gulp.task('default', function() {
 
 gulp.task('build', function() {
     runSequence(
-        ['clean'], [ 'process-css-dist', 'copy-html-files', 'copy-bower-components', 'connectDist', 'browserifyDist']
+        ['clean'], ['process-css-dist', 'copy-html-files', 'copy-bower-components', 'connectDist', 'browserifyDist']
     );
 });
