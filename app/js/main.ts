@@ -66,8 +66,8 @@
       });
   });
   app.run(["$rootScope", "$timeout", "$state", function($rootScope, $timeout, $state) {
+    $state.go("topView.listen");
               // $timeout(function() {
-              //   $state.go("topView.listen");
               // }, 2000);
                 // console.log("$viewContentLoaded!!");
               
