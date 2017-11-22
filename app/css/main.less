@@ -10,7 +10,7 @@ body, html {
   margin:  0;
   width: 100%;  
   height: 100%;
-  // overflow: hidden;
+  overflow-x: hidden;
   // background-image: linear-gradient(-90deg, #13121C, #0E1220);
   // background-image: linear-gradient(0deg, #78113B, #BD51A0);    
   // color: red;
@@ -271,21 +271,18 @@ body, html {
     color: #000;
     // background: #000;
   }
-
+/* 
   .box{
     width: 100px;
     height: 100px;
     background: red;
     opacity: 0.99;
-  }
+  } */
 
   .mojs-shape{
     z-index: -999;
   }
 
-  .progress{
-    // background: red;
-  }
 
   img {
 		position:absolute;
@@ -302,23 +299,59 @@ body, html {
 }
 
 .player-active{
-  background: red;
+  background-image: linear-gradient(0deg, #1A1A1A, #FF1F8F);
   opacity: 1 !important;
 }
 
 .hidden-on-load{
-  transition: all 3000ms;
+  transition: all 1000ms;
   opacity: 0;
 }
 
 .player-controls{
   margin-top: -3px;
-}
-
-.progress{
-  // height: 0;
+  
 }
 
 .plangular .is-active{
   font-size: 2em;
+}
+.player-trackname{
+  color: white;
+}
+.slide-and-fade-up.ng-enter {
+  opacity: 0;
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -moz-transition: -moz-transform 1s, opacity 1s;
+  -o-transition: -o-transform 1s, opacity 1s;
+  -webkit-transition: -webkit-transform 1s, opacity 1s;
+  transition: transform 1s, opacity 1s;
+}
+.slide-and-fade-up.ng-enter.ng-enter-active {
+  opacity: 1;
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.slide-and-fade-up.ng-leave {
+  opacity: 1;
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  -moz-transition: -moz-transform 1s, opacity 1s;
+  -o-transition: -o-transform 1s, opacity 1s;
+  -webkit-transition: -webkit-transform 1s, opacity 1s;
+  transition: transform 1s, opacity 1s;
+}
+.slide-and-fade-up.ng-leave.ng-leave-active {
+  opacity: 0;
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
 }
