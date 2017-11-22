@@ -63,7 +63,7 @@
                     var ctx = new AudioContext();
                     var analyser = ctx.createAnalyser();
                     var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-                    var audioSrc = ctx.createMediaElementSource(audio);
+                    // var audioSrc = ctx.createMediaElementSource(audio);
                     var requestId = undefined;
 
                     function renderFrame() {
@@ -84,7 +84,7 @@
 
                         this.playing = src;
                         // audioSrc.connect(analyser);
-                        // renderFrame();
+                        renderFrame();
                     };
 
                     this.pause = function() {
