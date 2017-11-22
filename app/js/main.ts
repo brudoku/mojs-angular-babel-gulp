@@ -20,7 +20,7 @@
   app.directive('shapeAnim', shapeAnim);
   app.directive('loader', loader);
   app.directive("pageLoadAnim", pageLoadAnim);
-  app.directive("navAnim", navAnim);
+  // app.directive("navAnim", navAnim);
   app.directive("animateOnChange", animateOnChange);
   
   app.animation('.anim-list-item', trackAnim);
