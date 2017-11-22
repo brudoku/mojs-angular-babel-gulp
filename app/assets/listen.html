@@ -10,12 +10,12 @@
                 </button>
     </li> -->
 
-    <div plangular="http://soundcloud.com/bru-audio/tracks" class="mb3 rounded plangular">
+    <div plangular="https://soundcloud.com/bru-audio/sets/dnb" class="mb3 rounded plangular">
         <div class="relative">
             <div page-load-anim class="mb3 rounded player-container hidden-on-load">
                 <div class="absolute top-0 bottom-0 left-0 player-progress" style="width:{{ 100 * (currentTime / duration) || 0 }}%"></div>
                 <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0"> {{ currentTime / duration }} </progress>
-                <img class="slide-and-fade-up anim-change-track" ng-animate-swap="track.waveform_url" ng-src="{{track.waveform_url}}" alt="{{track.title}} " style="width:100%;height:100%;-webkit-filter:contrast(200%);filter:contrast(200%); " class="absolute top-0 right-0 bottom-0 left-0 "
+                <img class="anim-change-track" ng-animate-swap="track.waveform_url" ng-src="{{track.waveform_url}}" alt="{{track.title}} " style="width:100%;height:100%;-webkit-filter:contrast(200%);filter:contrast(200%); " class="absolute top-0 right-0 bottom-0 left-0 "
                 />
 
                 <div class="absolute top-0 right-0 bottom-0 left-0 " ng-click="seek($event) "></div>
@@ -32,8 +32,8 @@
                             <svg class="icon geomicon " data-icon="next " viewBox="0 0 32 32 " style="fill:#fff "><path d="M4 4 L24 14 V4 H28 V28 H24 V18 L4 28 z "></path></svg>
                         </button>
                     <div class="flex-none h3 mr2 z-fix player-trackname">
-                        <h3 class="h6 caps m0 ">{{track.user.username}}</h3>
-                        <h2 class="h4 caps m0 ">{{track.title}}</h2>
+                        <!-- <h3 class="h6 caps m0 ">{{track.user.username}}</h3> -->
+                        <h2 class="h2 caps m0 ">{{track.title}}</h2>
                     </div>
                 </div>
             </div>

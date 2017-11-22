@@ -24,16 +24,16 @@ var waveAnim = function($timeout) {
       console.log("leave");
       $el.snabbt({
         easing: "ease",
-        fromOpacity: 1,
+        fromOpacity: 0.5,
         opacity: 0,
         duration: 1000,
         fromPosition: [0, 0, 0],
         position: [0, -100, 0]
       });
-      done();
-      // $timeout(function() {
-      //   $el.css("transform", "none");
-      // }, 1000);
+      $timeout(function() {
+        $el.css("transform", "none");
+        done();
+      }, 1000);
     }
   };
 };
