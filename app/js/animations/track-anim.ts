@@ -49,19 +49,14 @@ var anim_list_item = function($timeout) {
             }, 1000);            
         }, 
         addClass: function (element, className, done) {
-            console.log('add classs');
             var $elem = $(element);
             $elem.snabbt({
               easing: "ease",
               opacity: 1,
               fromOpacity: 0,
               duration: 1000,
-              fromRotation: [0, 0, Math.PI / 2],
-              rotation: [0, 0, 0],
-              // fromPosition: [fromPos, 0, 0],
-              // position: [0, 0, 0],
-            //   fromScale: [0,0],
-            //   scale: [5,5],
+              fromPosition: [0, 0, 0],
+              position: [0, 0, 0],
             });
             $timeout(function() {
               $elem.css("transform", "none");
