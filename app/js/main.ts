@@ -8,8 +8,10 @@
   const pageLoadAnim = require("./directives/pageLoadAnim.ts");
   const loader      = require("./directives/loader.ts");
   const navAnim     = require("./directives/navAnim.ts");
+  const animateOnChange = require("./directives/animateOnChange.ts");
   const lazyService = require("./services/lazyService.ts");
   const Utility     = require("./services/Utility.ts");
+  const waveAnim = require("./animations/waveformAnim.ts");
   const trackAnim   = require("./animations/track-anim.ts");
   
   app.controller('mainCtrl', mainCtrl);
@@ -19,7 +21,11 @@
   app.directive('loader', loader);
   app.directive("pageLoadAnim", pageLoadAnim);
   app.directive("navAnim", navAnim);
+  app.directive("animateOnChange", animateOnChange);
+  
   app.animation('.anim-list-item', trackAnim);
+  app.animation(".anim-change-track", waveAnim);
+  
   app.service("lazyService", lazyService);
   app.service("Utility", Utility);
   
