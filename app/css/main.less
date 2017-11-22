@@ -123,7 +123,6 @@ body, html {
 .inner {
   width: 100%;
   margin: 0 auto;
-  margin-top: 100px;
   position: absolute;
   p{
     // margin: 20px;
@@ -298,9 +297,10 @@ body, html {
     opacity: 0.99;
 }
 
-.player-active{
+.player-container{
   background-image: linear-gradient(0deg, #1A1A1A, #FF1F8F);
-  opacity: 1 !important;
+  height: 100px;
+  // opacity: 1 !important;
 }
 
 .hidden-on-load{
@@ -309,8 +309,8 @@ body, html {
 }
 
 .player-controls{
-  margin-top: -3px;
-  
+  margin-top: 30px;
+
 }
 
 .plangular .is-active{
@@ -354,4 +354,9 @@ body, html {
   -ms-transform: translateY(-100%);
   -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
+}
+
+.player-progress{
+  background-image: linear-gradient(0deg, #171717, #FF8AC4);
+  transition: 300ms all;  
 }
