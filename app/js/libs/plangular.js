@@ -69,12 +69,11 @@
                     function renderFrame() {
                         requestId = requestAnimationFrame(renderFrame);
                         analyser.getByteFrequencyData(frequencyData);
-                        console.log(frequencyData);
+                        // console.log(frequencyData);
                     }
 
 
                     this.play = function(src) {
-                        console.log("frequencyData");
 
                         if (src != audio.src) {
                             audio.src = src;
@@ -84,7 +83,7 @@
 
                         this.playing = src;
                         // audioSrc.connect(analyser);
-                        renderFrame();
+                        // renderFrame();
                     };
 
                     this.pause = function() {
@@ -631,6 +630,7 @@
                                 }
 
                                 scope.play = function(i) {
+                                    console.log('playein' + i)
                                     if (typeof i !== "undefined" && scope.tracks.length) {
                                         scope.index = i;
                                         scope.track = scope.tracks[i];
@@ -694,6 +694,12 @@
                                         scope.next();
                                     }
                                 });
+                                $timeout(function() {
+                                    scope.play(0);
+                                }, 3000).then(function() {
+                                    scope.pause()
+                                })
+
                             }
                         };
                     }
