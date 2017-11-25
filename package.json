@@ -9,8 +9,8 @@
     },
     "author": "David Okunlola - dnamuzik@gmail.com",
     "license": "ISC",
-    "dependencies": {},
-    "devDependencies": {
+    "devDependencies": {},
+    "dependencies": {
         "babel-plugin-syntax-object-rest-spread": "^6.13.0",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-env": "^1.6.0",
