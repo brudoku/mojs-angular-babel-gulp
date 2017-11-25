@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>ng-snabbt</title>
+    <title>Bru.audio</title>
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
     <!-- styles-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
@@ -17,14 +17,11 @@
 </head>
 
 <body ng-app="app">
-    <!-- element to move -->
     <div class="container" id="main" ng-controller="mainCtrl">
         <div line-anim class="mojs-line-tl-hook"></div>
         <div shape-anim class="mojs-line-tl-hook"></div>
 
-        <!-- <div link-anim class="mojs-line-tl-hook"></div> -->
-
-        <div class="row logo">
+        <div logo-load-anim class="row logo hidden-on-load">
             <div class="flex-container center">
                 <a href="http://localhost:8888">
                     <svg id="logo" class="flex-item" xmlns="http://www.w3.org/2000/svg" viewBox="52 0 155 50" min-x="0" preserveAspectRatio="xMinYMin" width="150">
@@ -37,17 +34,15 @@
         </div>
 
         <div class="row">
+            <!--REMOVE "hide" CLASS BELOW FOR NAV-->
             <div class="twelve columns hide">
                 <div id="#nav" class="nav">
                     <ul class="flex-container center">
                         <li class="anim-line flex-item" id="l-1"><a ui-sref="topView.listen" ui-sref-active="is-active">listen</a></li>
                         <li class="anim-line flex-item" id="l-2"><a ui-sref="topView.bio" ui-sref-active="is-active">bio</a></li>
-                        <!-- <li class="flex-item" id="l-3" ng-click="navClick('media')" ng-class="{'isSelected' : isPageSelected('media')}">Media</li> -->
                     </ul>
                 </div>
             </div>
-            <!-- <div loader>Loading...</div> -->
-
             <div ui-view></div>
         </div>
     </div>

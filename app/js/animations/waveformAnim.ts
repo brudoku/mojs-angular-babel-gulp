@@ -5,7 +5,7 @@ var waveAnim = function($timeout) {
     enter: function(element, done) {
       var $el = $(element);
       $el.snabbt({
-        easing: "ease",
+        easing: "linear",
         opacity: 1,
         fromOpacity: 0,
         duration: 1000,
@@ -20,7 +20,7 @@ var waveAnim = function($timeout) {
     leave: function(element, done) {
       var $el = $(element);
       $el.snabbt({
-        easing: "ease",
+        easing: "linear",
         fromOpacity: 0.5,
         opacity: 0,
         duration: 1000,

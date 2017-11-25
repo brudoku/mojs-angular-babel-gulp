@@ -8,16 +8,19 @@ let playerLoadAnim = ($timeout, $rootScope, $animate) => {
             var $el = $(elem)
                 
             $el.snabbt({
-                delay: 500,
-                easing: "ease",
-                duration: 500,
-                fromOpacity: 0,
-                opacity: 1,              
-                fromRotation: [Math.PI / 2, 0, 0],
-                rotation: [0, 0, 0],
-                fromPosition: [0, 20, 0],
-                position: [0, 0, 0],
-            })
+              delay: 500,
+              easing: "ease",
+              duration: 500,
+              fromOpacity: 0,
+              opacity: 1,
+              // fromRotation: [Math.PI / 2, 0, 0],
+              // rotation: [0, 0, 0],
+              fromScale: [0, 0],
+              scale: [1, 1],
+
+              fromPosition: [0, 20, 0],
+              position: [0, 0, 0]
+            });
 
             $rootScope.$broadcast("anim-player-loaded"); 
         }

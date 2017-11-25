@@ -6,7 +6,7 @@ var lazyService = function ($timeout, $q, $http) {
             var deferred = $q.defer();
             $timeout(function () {
                 deferred.resolve("-----deferred.resolve-----");    
-                }, 1000);
+                }, 100);
                 return deferred.promise;
             }();
     }

@@ -1,12 +1,8 @@
 let mainCtrl = function($scope, $rootScope, $state, $timeout, lazyService, Utility) {
-
-    lazyService.lazyFn().then(function(response) {
-        console.log(response);
-    });
-
-    $scope.pages = ["listen", "bio", "media"];
+    // lazyService.lazyFn().then(function(response) {
+        // console.log(response); --> -----deferred.resolve-----
+    // });
     $scope.currentPage = "";
-
     $scope.isPageSelected = function(title) {
         return title === $scope.currentPage;
     };
@@ -16,13 +12,6 @@ let mainCtrl = function($scope, $rootScope, $state, $timeout, lazyService, Utili
             $scope.currentPage = title;
         }
     };
-    $scope.trackSelect = function() {
-        $scope.$broadcast("page-changed-from");
-    };
-
-    $scope.$on("directive-loaded", function() {
-        console.log("directive loaded");
-    });
-};;
+};
 
 module.exports = mainCtrl;

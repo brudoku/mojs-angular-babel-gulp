@@ -1,37 +1,26 @@
 'use strict';
 /*...*/
-  const app         = angular.module('app', ['ui.router', 'ngAnimate', 'plangular']);
-  const mainCtrl    = require('./controllers/mainCtrl.ts');
-  const lineAnim    = require('./directives/lineAnim.ts');
-  const linkAnim    = require('./directives/linkAnim.ts');
-  const shapeAnim   = require('./directives/shapeAnim.ts');
-  const navAnim    = require("./directives/navAnim.ts");
-  
-  const playerLoadAnim = require("./directives/playerLoadAnim.ts");
-  const playerButtonAnim = require("./directives/playerButtonAnim.ts");
-  
-  const loader      = require("./directives/loader.ts");
-  const lazyService = require("./services/lazyService.ts");
-  const Utility     = require("./services/Utility.ts");
-  const waveFormAnim = require("./animations/waveformAnim.ts");
-  const trackLoadAnim   = require("./animations/trackLoadAnim.ts");
-  const trackTitleAnim = require("./animations/trackTitleAnim.ts");
-
+  const app               = angular.module('app', ['ui.router', 'ngAnimate', 'plangular']);
+  const mainCtrl          = require('./controllers/mainCtrl.ts');
+  const lineAnim          = require('./directives/lineAnim.ts');
+  const shapeAnim         = require('./directives/shapeAnim.ts');
+  const playerLoadAnim    = require("./directives/playerLoadAnim.ts");
+  const playerButtonAnim  = require("./directives/playerButtonAnim.ts");
+  const logoLoadAnim      = require("./directives/logoLoadAnim.ts");
+  const lazyService       = require("./services/lazyService.ts");
+  const Utility           = require("./services/Utility.ts");
+  const waveFormAnim      = require("./animations/waveformAnim.ts");
+  const trackLoadAnim     = require("./animations/trackLoadAnim.ts");
+  const trackTitleAnim    = require("./animations/trackTitleAnim.ts");
   app.controller('mainCtrl', mainCtrl);
   app.directive('lineAnim', lineAnim);
-  app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
-  app.directive("navAnim", navAnim);
-  
-  app.directive('loader', loader);
   app.directive("playerLoadAnim", playerLoadAnim);
-    app.directive("playerLoadAnim", playerLoadAnim);
-
+  app.directive("logoLoadAnim", logoLoadAnim);
   app.directive("playerButtonAnim", playerButtonAnim);
   app.animation(".anim-track-title", trackTitleAnim);
   app.animation('.anim-list-item', trackLoadAnim);
   app.animation(".anim-change-track", waveFormAnim);
-  
   app.service("lazyService", lazyService);
   app.service("Utility", Utility);
   
@@ -73,25 +62,4 @@
   });
   app.run(["$rootScope", "$timeout", "$state", function($rootScope, $timeout, $state) {
     $state.go("topView.listen");
-              // $timeout(function() {
-              // }, 2000);
-                // console.log("$viewContentLoaded!!");
-              
-            //  $rootScope.$on("$stateChangeStart", function(event,toState,toParams,fromState,fromParams) {
-            //   // $rootScope.preloader = true;
-            //   $rootScope.$broadcast("loader");
-            //     console.log("$viewContentLoaded");
-              
-            // });
-            // $rootScope.$on("$stateChangeSuccess", function(event,toState,toParams,fromState,fromParams) {
-            //     console.log("$viewContentLoaded!!!!!!!!!!!!!!!");
-
-            //   $rootScope.preloader = false;
-            // });               
-            //    $rootScope.$on("$viewContentLoading", function() {
-            //     console.log("$viewContentLoading");
-            //   });
-            //   $rootScope.$on("$viewContentLoaded", function() {
-            //     console.log("$viewContentLoaded");
-            //   });                           
-            }]);
+  }]);

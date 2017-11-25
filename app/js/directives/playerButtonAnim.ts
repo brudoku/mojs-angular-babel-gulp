@@ -8,21 +8,18 @@ let playerButtonAnim = ($timeout, $rootScope, $animate) => {
             var $el = $(elem);
             var bt = attrs.playerButtonAnim;
             var pos = {
-                'prev' : -20,
-                'next' : 20,
-                'play' : 0
+                'prev' : [-20, 0, 0],
+                'next' : [20, 0, 0],
+                'play' : [0, -20, 0]
             };
             var runAnim = function(){
                 $el.snabbt({
                   delay: 2000,
-                  easing: "ease",
+                  easing: "easeOut",
                   opacity: 1,
                   fromOpacity: 0,
-                  duration: 500,
-                  background: "#000",
-                  fromRotation: [0, 0, 0],
-                  rotation: [Math.PI , Math.PI , Math.PI ],
-                  fromPosition: [pos[bt], 0, 0],
+                  duration: 1500,
+                  fromPosition: pos[bt],
                   position: [0, 0, 0],
                 });
             }

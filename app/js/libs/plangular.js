@@ -630,7 +630,6 @@
                                 }
 
                                 scope.play = function(i) {
-                                    console.log('playein' + i)
                                     if (typeof i !== "undefined" && scope.tracks.length) {
                                         scope.index = i;
                                         scope.track = scope.tracks[i];
@@ -696,7 +695,7 @@
                                 });
                                 $timeout(function() {
                                     scope.play(0);
-                                }, 3000).then(function() {
+                                }, 4000).then(function() {
                                     scope.pause()
                                 })
 

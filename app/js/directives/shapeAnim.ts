@@ -25,11 +25,9 @@ let shapeAnim = () => {
             
             let cross = new mojs.Shape({
                 shape: 'cross',
-                // y: util.getScreenY()/2 - y,    
                 stroke: '#000',    
                 radius: {0: RAD, curve: 'cubic.in' },
                 opacity: {1:0},
-                // y: y - 90
                 });
             let rescale = () => {
                 let w = util.getWindowSize();  
@@ -46,15 +44,6 @@ let shapeAnim = () => {
             let shapeArray = [square2, cross];
             shapeTimeline.add(shapeArray);
             shapeTimeline.play();
-            
-            $(document).on('resize', function(){
-                tuneShapes(shapeArray);
-            });
-
-            
-            document.addEventListener('dblclick', function(){
-                shapeTimeline.replay();
-            });                      
         }
     }
 }
