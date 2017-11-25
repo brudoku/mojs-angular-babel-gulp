@@ -5,26 +5,27 @@
   const lineAnim    = require('./directives/lineAnim.ts');
   const linkAnim    = require('./directives/linkAnim.ts');
   const shapeAnim   = require('./directives/shapeAnim.ts');
-  const pageLoadAnim = require("./directives/pageLoadAnim.ts");
+  const playerLoadAnim = require("./directives/playerLoadAnim.ts");
+  const playerButtonAnim = require("./directives/playerButtonAnim.ts");
+  
   const loader      = require("./directives/loader.ts");
   const navAnim     = require("./directives/navAnim.ts");
-  const animateOnChange = require("./directives/animateOnChange.ts");
   const lazyService = require("./services/lazyService.ts");
   const Utility     = require("./services/Utility.ts");
-  const waveAnim = require("./animations/waveformAnim.ts");
-  const trackAnim   = require("./animations/track-anim.ts");
-  
+  const waveFormAnim = require("./animations/waveformAnim.ts");
+  const trackLoadAnim   = require("./animations/trackLoadAnim.ts");
+  const trackTitleAnim = require("./animations/trackTitleAnim.ts");
+
   app.controller('mainCtrl', mainCtrl);
   app.directive('lineAnim', lineAnim);
   app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
   app.directive('loader', loader);
-  app.directive("pageLoadAnim", pageLoadAnim);
-  // app.directive("navAnim", navAnim);
-  app.directive("animateOnChange", animateOnChange);
-  
-  app.animation('.anim-list-item', trackAnim);
-  app.animation(".anim-change-track", waveAnim);
+  app.directive("playerLoadAnim", playerLoadAnim);
+  app.directive("playerButtonAnim", playerButtonAnim);
+  app.animation(".anim-track-title", trackTitleAnim);
+  app.animation('.anim-list-item', trackLoadAnim);
+  app.animation(".anim-change-track", waveFormAnim);
   
   app.service("lazyService", lazyService);
   app.service("Utility", Utility);
