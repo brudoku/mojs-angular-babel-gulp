@@ -33,7 +33,7 @@ gulp.task('connect', function() {
     connect.server({
         root: 'app/',
         port: 8888,
-        livereload: true
+        // livereload: true
     });
 });
 
@@ -109,7 +109,7 @@ gulp.task('process-css-dist', function() {
 /*=====TASKS=====*/
 gulp.task('default', function() {
     runSequence(
-        ['clean'], ['process-css', 'connect', 'watch', 'browserify']
+        ['clean'], ['process-css', 'connect', 'watch', /*  'browserify' */ ]
     );
 });
 
