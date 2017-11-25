@@ -5,11 +5,12 @@
   const lineAnim    = require('./directives/lineAnim.ts');
   const linkAnim    = require('./directives/linkAnim.ts');
   const shapeAnim   = require('./directives/shapeAnim.ts');
+  const navAnim    = require("./directives/navAnim.ts");
+  
   const playerLoadAnim = require("./directives/playerLoadAnim.ts");
   const playerButtonAnim = require("./directives/playerButtonAnim.ts");
   
   const loader      = require("./directives/loader.ts");
-  const navAnim     = require("./directives/navAnim.ts");
   const lazyService = require("./services/lazyService.ts");
   const Utility     = require("./services/Utility.ts");
   const waveFormAnim = require("./animations/waveformAnim.ts");
@@ -20,8 +21,12 @@
   app.directive('lineAnim', lineAnim);
   app.directive('linkAnim', linkAnim);
   app.directive('shapeAnim', shapeAnim);
+  app.directive("navAnim", navAnim);
+  
   app.directive('loader', loader);
   app.directive("playerLoadAnim", playerLoadAnim);
+    app.directive("playerLoadAnim", playerLoadAnim);
+
   app.directive("playerButtonAnim", playerButtonAnim);
   app.animation(".anim-track-title", trackTitleAnim);
   app.animation('.anim-list-item', trackLoadAnim);
