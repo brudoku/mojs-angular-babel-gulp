@@ -14,18 +14,16 @@ let playerButtonAnim = ($timeout, $rootScope, $animate) => {
             };
             var runAnim = function(){
                 $el.snabbt({
-                //   delay: 5000,
+                  delay: 2000,
                   easing: "ease",
                   opacity: 1,
                   fromOpacity: 0,
-                  duration: 3000,
+                  duration: 500,
                   background: "#000",
                   fromRotation: [0, 0, 0],
                   rotation: [Math.PI , Math.PI , Math.PI ],
                   fromPosition: [pos[bt], 0, 0],
                   position: [0, 0, 0],
-                //   fromScale: [3, 3],
-                //   scale: [1, 1]
                 });
             }
             $rootScope.$on("anim-player-loaded", function(){
