@@ -30,9 +30,10 @@ gulp.task('copy-html-files', function() {
 
 /*=====CONNECT=====*/
 gulp.task('connect', function() {
+    var port = (process.env.PORT || 8888)
     connect.server({
         root: 'app/',
-        port: 8888,
+        port: port,
         // livereload: true
     });
 });
