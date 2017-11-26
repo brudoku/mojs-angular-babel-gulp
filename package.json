@@ -5,7 +5,8 @@
     "main": "gulpfile.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "gulp"
+        "start": "gulp",
+        "postinstall": "./node_modules/bower/bin/bower install"
     },
     "author": "David Okunlola - dnamuzik@gmail.com",
     "license": "ISC",
