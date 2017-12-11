@@ -1,5 +1,10 @@
 # mojs-angular-babel-gulp
-Starter animation project including Angularjs v.1.6 - includes Babel, Gulp, Browserify, reload on save, .LESS, CSS autoprefixing, CSS minification, JS minification, SVG animation with Mo.js, and snabbt.js wired in for animating with AngularJs's $animate service.
+Starter animation project including Angularjs v.1.6 - includes Babel, Gulp, Browserify, reload on save, .LESS, CSS autoprefixing, CSS minification, JS minification, SVG animation with Mo.js, and snabbt.js wired in for animating DOM elements.
+
+DEMO
+
+https://bruaudio.herokuapp.com
+
 
 INSTALLATION
 
@@ -9,8 +14,6 @@ cd boilerplate-gulp-browserify-angular
 
 npm i
 
-bower i
+gulp
 
-gulp default
-
-Open http://localhost:8888 in a browser
+Go to http://localhost:8888
